@@ -26,13 +26,14 @@
     include 'db.php';
     $id = $_GET['id'];
 
-    $sql = mysqli_query($conn, "SELECT * From student_info left join program on student_info.PROGRAM=program.PROGRAM_ID where STUDENT_ID = '$id' ");
+    $sql = mysqli_query($conn, "SELECT * from students join program on students.PROGRAM = program.PROGRAM_ID JOIN user on students.USER=user.USER_ID where students.STUDENT_ID = '$id'");
     while($row = mysqli_fetch_assoc($sql)){
      ?>
      <div class="container">
          <div class="col-md-12">
          <form method="post">
          <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
+         <input type="hidden" name="student_user_id" value="<?php echo $row['USER_ID'] ?>">
 
          <div class="row">
          <div class="col-md-2 text-right">
@@ -51,7 +52,7 @@
          <label>REG NO.:</label>
          </div>
          <div class="col-md-2 text-center">
-          <input type="text" maxlength="12" class="form-control input-xs"  name="lrn" value="<?php echo $row['LRN_NO'] ?>"
+          <input type="text" maxlength="12" class="form-control input-xs"  name="registration_number" value="<?php echo $row['REGISTRATION_NUMBER'] ?>">
           <br>
           <label></label>
             
@@ -64,19 +65,19 @@
          <label>Name:</label>
          </div>
          <div class="col-md-2 text-center">
-         <input type="text" class="form-control input-xs"  name="lname" value="<?php echo $row['LASTNAME'] ?>"
+         <input type="text" class="form-control input-xs"  name="lname" value="<?php echo $row['LASTNAME'] ?>">
          <br>
           <label style="font-size:10px">(Last name)</label>
             
           </div>
           <div class="col-md-2 text-center">
-          <input type="text" class="form-control input-xs"  name="fname" value="<?php echo $row['FIRSTNAME'] ?>"
+          <input type="text" class="form-control input-xs"  name="fname" value="<?php echo $row['FIRSTNAME'] ?>">
           <br>
           <label style="font-size:10px">(First name)</label>
             
           </div>
           <div class="col-md-2 text-center">
-          <input type="text" class="form-control input-xs"  name="mname" value="<?php echo $row['MIDDLENAME'] ?>"
+          <input type="text" class="form-control input-xs"  name="mname" value="<?php echo $row['MIDDLE_NAME'] ?>">
           <br>
           <label style="font-size:10px">(Middle name)</label>
             
@@ -110,28 +111,14 @@
          <label>Date of Birth:</label>
          </div>
          <div class="col-md-2 text-center">
-          <input type="date" class="form-control input-xs"  name="dob" value="<?php echo $row['DATE_OF_BIRTH'] ?>"
+          <input type="date" class="form-control input-xs"  name="dob" value="<?php echo $row['DOB'] ?>">
           <br>
           <label></label>
             
           </div>
 
          </div>
-         <div class="row">
-         <div class="col-md-2 text-right">
-         <label>Place of Birth:</label>
-         </div>
-         <div class="col-md-4 text-center">
-         <input type="text" class="form-control input-xs"  name="bp" value="<?php echo $row['BIRTH_PLACE'] ?>"
-          <br>
-          <label></label>
-            
-          </div>
-
-         
         
-
-        </div>
          <div class="row">
          <div class="col-md-2 text-right">
          <label>Address:</label>
@@ -151,7 +138,7 @@
          <label>Parent or Guardian:</label>
          </div>
          <div class="col-md-4 text-center">
-          <textarea type="text" rows="2" class="form-control input-xs"  name="pg"><?php echo $row['PARENT_GUARDIAN'] ?></textarea>
+          <textarea type="text" rows="2" class="form-control input-xs"  name="pg_name"><?php echo $row['PG_NAME'] ?></textarea>
           
           <label></label>
             
@@ -164,7 +151,7 @@
          <label>Parent or Guardian Address:</label>
          </div>
          <div class="col-md-4 text-center">
-          <input type="text" class="form-control input-xs"  name="pga" value="<?php echo $row['P_ADDRESS'] ?>"
+          <input type="text" class="form-control input-xs"  name="pg_address" value="<?php echo $row['PG_ADDRESS'] ?>">
           <br>
           <label></label>
             
@@ -174,10 +161,10 @@
 
         <div class="row">
          <div class="col-md-2 text-right">
-         <label>Intermediate Course Completed:</label>
+         <label>High School Name:</label>
          </div>
          <div class="col-md-4 text-center">
-          <textarea type="text" class="form-control input-xs"  name="icc" ><?php echo $row['INT_COURSE_COMP'] ?></textarea>
+          <textarea type="text" class="form-control input-xs"  name="hs_name" ><?php echo $row['HS_NAME'] ?></textarea>
           
           <label></label>
             
@@ -185,24 +172,13 @@
 
          </div>
 
+         
          <div class="row">
          <div class="col-md-2 text-right">
-         <label>Total no. of years:</label>
+         <label>Year Completed High School:</label>
          </div>
          <div class="col-md-2 text-center">
-          <input type="number" class="form-control input-xs"  name="tny" value="<?php echo $row['TOTAL_NO_OF_YEARS'] ?>"
-          <br>
-          <label></label>
-            
-          </div>
-
-         </div>
-         <div class="row">
-         <div class="col-md-2 text-right">
-         <label>School Year:</label>
-         </div>
-         <div class="col-md-2 text-center">
-          <input type="text" class="form-control input-xs"  name="sy" value="<?php echo $row['SCHOOL_YEAR'] ?>"
+          <input type="text" class="form-control input-xs"  name="hs_year_completed" value="<?php echo $row['HS_YEAR_COMPLETED'] ?>">
           <br>
           <label></label>
             
@@ -212,10 +188,10 @@
 
          <div class="row">
          <div class="col-md-2 text-right">
-         <label>General Average:</label>
+         <label>KCSE GRADE:</label>
          </div>
          <div class="col-md-2 text-center">
-          <input type="number" class="form-control input-xs"  name="ave" value="<?php echo $row['GEN_AVE'] ?>"
+          <input type="text" class="form-control input-xs"  name="hs_grade" value="<?php echo $row['HS_GRADE'] ?>">
           <br>
           <label></label>
             
@@ -227,7 +203,7 @@
          <label>Curriculum Enrolled:</label>
          </div>
          <div class="col-md-2 text-center">
-         <select id="prog" name="prog" class="form-control input-xs" required="">
+         <select id="prog" name="program" class="form-control input-xs" required="">
         <option value="<?php echo $row['PROGRAM_ID'] ?>"><?php echo $row['PROGRAM'] ?></option>
     <?php
     include 'db.php';

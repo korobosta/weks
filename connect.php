@@ -8,7 +8,7 @@
 	$user = $_POST['user'];
 	$pwd = md5($_POST['pwd']);
 	
-	$qry="SELECT * FROM user WHERE USER = '$user' AND PASSWORD = '$pwd'";
+	$qry="SELECT * FROM user WHERE USERNAME = '$user' AND PASSWORD = '$pwd'";
 	$result=mysqli_query($conn, $qry);
 	if($result) {
 		if(mysqli_num_rows($result) > 0) {

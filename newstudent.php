@@ -13,7 +13,7 @@ $program=$_POST['program'];
 $lname=$_POST['lname'];
 $fname=$_POST['fname'];
 $mname=$_POST['mname'];
-$password=md5($_POST['password']);
+$pass=md5($_POST['password']);
 $address=$_POST['address'];
 $gender=$_POST['gender'];
 $email = $_POST['email'];
@@ -35,8 +35,10 @@ $search_query = mysqli_query($conn, "SELECT * FROM students WHERE REGISTRATION_N
 			</script>";
 		}else{
 
-			$user_sql="INSERT INTO user(LASTNAME,FIRSTNAME,MIDDLE_NAME,PASSWORD,USER_TYPE,ADDRESS,GENDER,EMAIL,DOB,USERNAME)
-			          VALUES('$lname','$fname','$mname','$password','$user_type','$address','$gender','$email','$dob','$email')
+			print($pass);
+
+			$user_sql="INSERT INTO user(LASTNAME,FIRSTNAME,MIDDLE_NAME,USER_TYPE,ADDRESS,GENDER,EMAIL,DOB,USERNAME,PASSWORD)
+			          VALUES('$lname','$fname','$mname','$user_type','$address','$gender','$email','$dob','$email','$pass')
 
 			";
 			$query=$conn->query($user_sql);

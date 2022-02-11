@@ -181,17 +181,6 @@ success:function(data)
    placeholder="Enter School " class="form-control input-xs" required="">
   </div>
 </div>
-
-
-  <div class="form-group">
-    <label class="col-xs-2 control-label" for="hs_year_completed">School Year Completed</label>
-  
-  <div class="col-xs-10">
-    <input class="form-control" style="width:150px" id="sy" name="sy" type="text"
-     placeholder="Enter Year">
-
-  </div>
-  </div>
   
 
   <div class="form-group">
@@ -278,31 +267,27 @@ success:function(data)
     <tbody>
     <?php
     include 'db.php';
-    $sql=  mysqli_query($conn, "SELECT * FROM student_info order by LASTNAME ");
-    while($row = mysqli_fetch_assoc($sql)) {
-      $sid = $row['STUDENT_ID'];
-      $sql2=  mysqli_query($conn, "SELECT * FROM program WHERE PROGRAM_ID = '".$row['PROGRAM']."' ");
-         while($row2 = mysqli_fetch_assoc($sql2)) {    
-
-
+    $sql=  mysqli_query($conn, "SELECT * FROM students JOIN program ON students.PROGRAM=program.PROGRAM_ID JOIN user ON students.USER=user.USER_ID order by user.LASTNAME ");
+    
+    while($row = mysqli_fetch_array($sql)) {
     ?>
       <tr>
 
 
-        <td><?php echo $row['LRN_NO'] ?></td>
-        <td><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></td>
+        <td><?php echo $row['REGISTRATION_NUMBER'] ?></td>
+        <td><?php echo $row['LASTNAME'] . ', ' . $row['FIRSTNAME']. ' ' . $row['MIDDLE_NAME'] ?></td>
         
-        <td style="text-align:center"><?php echo $row2['PROGRAM'] ?></td>
+        <td style="text-align:center"><?php echo $row['PROGRAM'] ?> </td>
         
      
       <td style="text-align:center"> 
-     <a  class="btn btn-info" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $sid ?>" id="getUser">View Profile</a>
+     <a class="btn btn-info" data-toggle="modal" data-target="#view-modal" data-id="<?php echo $row['STUDENT_ID'] ?>" id="getUser">View Profile</a>
      </td>
        </tr>
 
       <?php
     }
-    } mysqli_close($conn);
+    mysqli_close($conn);
       ?>
     </tbody>
   </table>

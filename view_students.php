@@ -5,16 +5,19 @@
     $id = $_POST['id'];
 
   if($_POST['id']){
-    $sql = mysqli_query($conn, "SELECT * From student_info left join program on student_info.PROGRAM = program.PROGRAM_ID where STUDENT_ID = '$id'");
+    $sql = mysqli_query($conn, "SELECT * from students join program on students.PROGRAM = program.PROGRAM_ID JOIN user on students.USER=user.USER_ID where students.STUDENT_ID = '$id'");
+    if(!$sql){
+      echo $conn->error;
+    }
     while($row = mysqli_fetch_assoc($sql)){
      ?>
-         <input type="hidden" name="id" value="<?php echo $id ?>"
+         <input type="hidden" name="id" value="<?php echo $id ?>">
          <div class="row">
          <div class="col-md-5 text-right">
          <label>Reg No.:</label>
          </div>
          <div class="col-md-2 text-left">
-          <?php echo $row['LRN_NO'] ?>
+          <?php echo $row['REGISTRATION_NUMBER'] ?>
 
             
           </div>
@@ -26,7 +29,7 @@
          <label>Name:</label>
          </div>
          <div class="col-md-4 text-left">
-         <?php echo $row['LASTNAME'].", ".$row['FIRSTNAME']." ".$row['MIDDLENAME']; ?>
+         <?php echo $row['LASTNAME'].", ".$row['FIRSTNAME']." ".$row['MIDDLE_NAME']; ?>
     
           </div>
         </div>
@@ -47,22 +50,13 @@
          <label>Date of Birth:</label>
          </div>
          <div class="col-md-2 text-left">
-         <?php echo $row['DATE_OF_BIRTH'] ?>
+         <?php echo $row['DOB'] ?>
           <label></label>
             
           </div>
 
          </div>
-         <div class="row">
-         <div class="col-md-5 text-right">
-         <label>Place of Birth:</label>
-         </div>
-         <div class="col-md-2 text-left">
-        <?php echo $row['BIRTH_PLACE'] ?>
-            
-          </div>
-
-        </div>
+         
          <div class="row">
          <div class="col-md-5 text-right">
          <label>Address:</label>
@@ -81,7 +75,7 @@
          <label>Parent or Guardian:</label>
          </div>
          <div class="col-md-2 text-left">
-          <?php echo $row['PARENT_GUARDIAN'] ?>
+          <?php echo $row['PG_NAME'] ?>
           <label></label>
             
           </div>
@@ -93,7 +87,19 @@
          <label>Parent or Guardian Address:</label>
          </div>
          <div class="col-md-4 text-left">
-          <?php echo $row['P_ADDRESS'] ?>
+          <?php echo $row['PG_ADDRESS'] ?>
+          <label></label>
+            
+          </div>
+
+         </div>
+
+         <div class="row">
+         <div class="col-md-5 text-right">
+         <label>Parent or Guardian Phone:</label>
+         </div>
+         <div class="col-md-4 text-left">
+          <?php echo $row['PG_PHONE'] ?>
           <label></label>
             
           </div>
@@ -105,7 +111,20 @@
          <label>High School/Secondary:</label>
          </div>
          <div class="col-md-2 text-left">
-          <?php echo $row['INT_COURSE_COMP'] ?>
+          <?php echo $row['HS_NAME'] ?>
+          <label></label>
+            
+          </div>
+
+         </div>
+
+         
+         <div class="row">
+         <div class="col-md-5 text-right">
+         <label>Year Completed:</label>
+         </div>
+         <div class="col-md-2 text-left">
+         <?php echo $row['HS_YEAR_COMPLETED'] ?>
           <label></label>
             
           </div>
@@ -114,33 +133,10 @@
 
          <div class="row">
          <div class="col-md-5 text-right">
-         <label>Years Attended:</label>
+         <label>KSCE GRADE:</label>
          </div>
          <div class="col-md-2 text-left">
-          <?php echo $row['TOTAL_NO_OF_YEARS'] ?>
-          <label></label>
-            
-          </div>
-
-         </div>
-         <div class="row">
-         <div class="col-md-5 text-right">
-         <label>School Year:</label>
-         </div>
-         <div class="col-md-2 text-left">
-         <?php echo $row['SCHOOL_YEAR'] ?>
-          <label></label>
-            
-          </div>
-
-         </div>
-
-         <div class="row">
-         <div class="col-md-5 text-right">
-         <label>KSCE:</label>
-         </div>
-         <div class="col-md-2 text-left">
-         <?php echo $row['GEN_AVE'] ?>
+         <?php echo $row['HS_GRADE'] ?>
           <label></label>
             
           </div>
