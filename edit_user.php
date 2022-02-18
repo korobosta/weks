@@ -10,9 +10,9 @@ include 'db.php';
  
 	
 	if(!empty($pwd))
-		$sql = mysqli_query($conn,"UPDATE user Set FIRSTNAME = '$fname', LASTNAME = '$lname', USER= '$user', PASSWORD = '".md5($pwd)."', USER_TYPE= '$type' Where USER_ID= '$id'");
+		$sql = mysqli_query($conn,"UPDATE user Set FIRSTNAME = '$fname', LASTNAME = '$lname', USERNAME= '$user', PASSWORD = '".md5($pwd)."', USER_TYPE= '$type' Where USER_ID= '$id'");
 		else
-	$sql = mysqli_query($conn,"UPDATE user Set FIRSTNAME = '$fname', LASTNAME = '$lname', USER= '$user' USER_TYPE= '$type' Where USER_ID= '$id'");
+	$sql = mysqli_query($conn,"UPDATE user Set FIRSTNAME = '$fname', LASTNAME = '$lname', USERNAME= '$user' USER_TYPE= '$type' Where USER_ID= '$id'");
 	if($sql){
 			echo "<script>
 			alert('Account updated successfully');

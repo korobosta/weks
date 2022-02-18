@@ -3,13 +3,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 include 'db.php';
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
+	$mname = $_POST['mname'];
+    $email = $_POST['email'];
 	$user = $_POST['user'];
 	$pwd = md5($_POST['pwd']); 
 	$type = $_POST['type'];
 	
 
-		$sql = "INSERT INTO user (FIRSTNAME, LASTNAME, PASSWORD, USER, USER_TYPE)
-	VALUES ('$fname', '$lname', '$pwd', '$user' ,'$type')";
+		$sql = "INSERT INTO user (FIRSTNAME, LASTNAME, PASSWORD, USERNAME, USER_TYPE,EMAIL,MIDDLE_NAME)
+	VALUES ('$fname', '$lname', '$pwd', '$user' ,'$type','$email','mname')";
 
 	if (mysqli_query($conn, $sql)) {
     echo "<script>

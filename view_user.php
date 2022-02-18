@@ -28,9 +28,9 @@
     <br>
 
     <div class="form-group">
-      <label class="control-label col-sm-1" for="user">User:</label>
+      <label class="control-label col-sm-1" for="user">Username:</label>
       <div class="col-sm-3">          
-        <input type="text" class="form-control" id="user" name="user" value="<?php echo $row['USER'] ?>" >
+        <input type="text" class="form-control" id="user" name="user" value="<?php echo $row['USERNAME'] ?>" >
       </div>
     </div>
     <br>    
@@ -45,13 +45,12 @@
       <label class="control-label col-sm-1" for="pwd">User Type:</label>
       <div class="col-sm-3">   
         <select class="form-control" name="type" id="sel1">
-        <option><?php echo $row['USER_TYPE']?></option>
-        <?php
-        if($row['USER_TYPE'] == "STAFF"){ ?>
+          <option><?php echo $row['USER_TYPE']?></option>
           <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-        <?php }else{?>
           <option value="STAFF">STAFF</option>
-        <?php } ?>
+          <option value="LECTURER">LECTURER</option>
+          <option value="FINANCE">FINANCE</option>
+        
         </select>
       </div>
     </div>

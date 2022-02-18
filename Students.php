@@ -193,7 +193,7 @@ success:function(data)
 </div>
 
 <div class="form-group">
-  <label class="col-xs-2 control-label" for="ave">KCSE GADE</label> 
+  <label class="col-xs-2 control-label" for="ave">KCSE GRADE</label> 
   <div class="col-xs-6">
   <input id="ave" name="hs_grade" type="text" style="width:100px;text-align:right"
    class="form-control input-xs" required="">

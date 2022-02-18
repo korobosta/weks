@@ -56,7 +56,7 @@ success:function(data)
       <input type="hidden" name="id" value="<?php echo $row['PROGRAM_ID'] ?>">
         <td><input  name="prog" type="text" style="border:0px" value="<?php echo $row['PROGRAM'] ?>"></td>
         <td><textarea  name="desc" type="text" style="border:0px;width:100%" ><?php echo $row['DESCRIPTION'] ?></textarea></td>
-        <td><center><a  data-toggle="modal" data-target="#program" data-id="<?php echo $row['PROGRAM'] ?>" id="get_sub">Subjects</a>|<button type="submit" style="border:0px;background:white" ><i class="fa fa-pencil-square" aria-hidden="true"></i> update</button></center></td>
+        <td><center><a  data-toggle="modal" data-target="#program" data-id="<?php echo $row['PROGRAM'] ?>" id="get_sub">Units</a>|<button type="submit" style="border:0px;background:white" ><i class="fa fa-pencil-square" aria-hidden="true"></i> update</button></center></td>
       </tr>
       </form>
       <?php
@@ -119,7 +119,7 @@ success:function(data)
       <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Subjects</h4>
+              <h4 class="modal-title">Units</h4>
             </div>
             <div class="modal-body">
                 <div class="container">

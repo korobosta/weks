@@ -38,7 +38,7 @@ success:function(data)
     <thead>
       <tr id="heads">
         <th style="width:20%">Name</th>
-        <th style="width:10%">User</th>
+        <th style="width:10%">Username</th>
         <th style="width:10%">Type</th>
         <th style="width:10%"></th>
       </tr>
@@ -54,7 +54,7 @@ success:function(data)
     <form method="post" action="update_subject.php">
       <tr>
         <td><?php echo $row['FIRSTNAME']." ".$row['LASTNAME'] ?></td>
-        <td><?php echo $row['USER'] ?></td>
+        <td><?php echo $row['USERNAME'] ?></td>
         <td><?php echo $row['USER_TYPE'] ?></td>
         <td><a data-toggle="modal" data-target="#edit_user" data-id="<?php echo $row['USER_ID'] ?>" id="getUser"><i class="fa fa-pencil-square" aria-hidden="true"></i> edit</a></td>
       </tr>
@@ -87,18 +87,34 @@ success:function(data)
               </div>
             </div>
             <div class="form-group">
-              <label for="sub" class="cols-sm-2 control-label">First Name</label>
+              <label for="sub" class="cols-sm-2 control-label">Middle Name</label>
               <div class="cols-sm-4">
                 <div class="input-group">
-        <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="lname" placeholder="Enter Firstname" required>
+                    <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="mname" placeholder="Enter Middle Name" required>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="sub" class="cols-sm-2 control-label">User</label>
+              <label for="sub" class="cols-sm-2 control-label">First Name</label>
               <div class="cols-sm-4">
                 <div class="input-group">
-        <input type="text" class="form-control" id="fname" name="user" placeholder="Enter Firstname" required>
+                    <input type="text" class="form-control" style="text-transform: capitalize;" id="fname" name="lname" placeholder="Enter Firstname" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">Email</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                    <input type="email" class="form-control"  id="fname" name="email" placeholder="Enter Email" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">Username</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="fname" name="user" placeholder="Enter Firstname" required>
                 </div>
               </div>
             </div>
@@ -106,7 +122,7 @@ success:function(data)
               <label for="sub" class="cols-sm-2 control-label">Password</label>
               <div class="cols-sm-4">
                 <div class="input-group">
-        <input type="password" class="form-control" id="fname" name="pwd" placeholder="Enter Firstname" required>
+                  <input type="password" class="form-control" id="fname" name="pwd" placeholder="Enter Firstname" required>
                 </div>
               </div>
             </div>
@@ -117,8 +133,12 @@ success:function(data)
         <select class="form-control" name="type" id="sel1" required>
         <option></option>
           <option value="ADMINISTRATOR">ADMINISTRATOR</option>
-          <option value="STAFF">STAFF</option>n>
-        </select>                </div>
+          <option value="STAFF">STAFF</option>
+          <option value="LECTURER">LECTURER</option>
+          <option value="FINANCE">FINANCE</option>
+        </select>               
+      </div>
+              
               </div>
             </div>
             

@@ -18,10 +18,11 @@
 	$for=$_POST['f'];
 	$des=$_POST['des'];
 	$user= $_SESSION['ID'];
+	$lecturer=$_POST['lecturer'];
 	if($_POST['id'] == ""){
 
-	if ($sql=mysqli_query($conn, "INSERT into subjects (SUBJECT, DESCRIPTION, `FOR`) 
-		VALUES ( '$sub', '$des', '$for' )")){
+	if ($sql=mysqli_query($conn, "INSERT into subjects (SUBJECT, DESCRIPTION, `FOR`,'LECTURER') 
+		VALUES ( '$sub', '$des', '$for','$lecturer' )")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('added $sub in the subject list','$user',NOW() )");
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>New Subject Successfully Added.</h4></center></div>";
@@ -38,7 +39,7 @@
 	}
 	}else{
 		$id=$_POST['id'];
-		$sql = "UPDATE subjects SET SUBJECT='$sub',DESCRIPTION='$des',`FOR`='$for' WHERE SUBJECT_ID='$id'";
+		$sql = "UPDATE subjects SET SUBJECT='$sub',DESCRIPTION='$des',`FOR`='$for',LECTURER='$lecturer' WHERE SUBJECT_ID='$id'";
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('updated $id in the subject list','$user',NOW() )");
 

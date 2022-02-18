@@ -23,10 +23,10 @@
     </thead>
     <tbody>
     <?php
-    include 'db.php';
+    include 'db.php'; 
 
     
-    $sql=  mysqli_query($conn, "SELECT subjects.SUBJECT_ID,subjects.SUBJECT,subjects.DESCRIPTION,program.PROGRAM,program.PROGRAM_ID FROM subjects LEFT JOIN program ON subjects.FOR=program.PROGRAM_ID Order by subjects.SUBJECT ");
+    $sql=  mysqli_query($conn, "SELECT subjects.SUBJECT_ID,subjects.SUBJECT,subjects.DESCRIPTION,program.PROGRAM,program.PROGRAM_ID,user.USER_ID,user.FIRSTNAME, user.LASTNAME FROM subjects LEFT JOIN program ON subjects.FOR=program.PROGRAM_ID JOIN user ON subjects.LECTURER=user.USER_ID Order by subjects.SUBJECT  ");
     if(!$sql){
       echo $conn->error;
     }
@@ -40,6 +40,11 @@
          <input type="hidden" id="id<?php echo $row["SUBJECT_ID"] ?>" name="id" value="<?php echo $row['SUBJECT_ID'] ?>">
         <td><input id="sub<?php echo $row["SUBJECT_ID"] ?>"  name="subj" type="text" style="border:0px" value="<?php echo $row['SUBJECT'] ?>" readonly></td>
           <td><input id="para<?php echo $row["SUBJECT_ID"] ?>"  name="subj" type="text" style="border:0px" value="<?php echo $row['PROGRAM'] ?>" readonly></td>
+          <input id="paravalue<?php echo $row["SUBJECT_ID"] ?>"  name="paravalue" type="hidden" style="border:0px" value="<?php echo $row['PROGRAM_ID'] ?>" readonly>
+
+          <input id="lecname<?php echo $row["SUBJECT_ID"] ?>"  name="lecname" type="hidden" style="border:0px" value="<?php echo $row['FIRSTNAME']   . ' ' . $row['LASTNAME']  ?>" readonly>
+          <input id="lecid<?php echo $row["SUBJECT_ID"] ?>"  name="lecid" type="hidden" style="border:0px" value="<?php echo $row['USER_ID'] ?>" readonly>
+
         <td><input id="des<?php echo $row["SUBJECT_ID"] ?>" name="desc" type="text" style="border:0px;width:100%" value="<?php echo $row['DESCRIPTION'] ?>" readonly></td>
         <td><center><a onclick="update_subject(<?php echo $row["SUBJECT_ID"] ?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
       </tr>
@@ -59,13 +64,20 @@
 <script>
   function update_subject($i){
     var act,sub,para,desc,i =$i;
-      para = $("#para"+i).val();
+      paratext = $("#para"+i).val();
+      paravalue = $("#paravalue"+i).val();
+
+      lectext = $("#lecname"+i).val();
+      lecvalue = $("#lecid"+i).val();
+
       $("#id").val($("#id"+i).val());
       $("#sub").val($("#sub"+i).val());
-      //$("#para").html(para);
+      $("#para").val(paravalue).text(paratext);
+      $("#lecturer1").val(lecvalue).text(lectext);
       $("#des").val($("#des"+i).val());
       $("#head").html("Update Subject");
       $("#btn_add").html("Update");
+      //$('#para1').append($('<option>').val(paravalue).text(paratext))
 
 
   }
@@ -107,6 +119,26 @@
                    ?>
                   <option value="<?php echo $row['PROGRAM_ID'] ?>">
                   <?php echo $row['PROGRAM'] ?>
+                  </option>
+                  <?php } mysqli_close($conn); ?>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">Lecturer</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <select name="lecturer" class="form-control" id="lecturer">
+                  <option id="lecturer1"></option>
+                  <?php
+                  include 'db.php';
+                  $sql = mysqli_query($conn,"SELECT * from user WHERE USER_TYPE='LECTURER'");
+                  while($row=mysqli_fetch_assoc($sql)){
+                   ?>
+                  <option value="<?php echo $row['USER_ID'] ?>">
+                  <?php echo $row['FIRSTNAME'].' '.$row['LASTNAME'] ?>
                   </option>
                   <?php } mysqli_close($conn); ?>
                   </select>
