@@ -67,6 +67,9 @@ $school_year=$s['school_year'];
         <li>
             <a href="rms.php?page=grade"><i class="fa fa-fw fa-file-text-o"></i> Semester(s)</a>
         </li>
+        <li>
+            <a href="rms.php?page=configure_fee"><i class="fa fa-fw fa-file-text-o"></i> Configure Fee </a>
+        </li>
     </ul>
 </li>
 

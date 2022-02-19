@@ -31,7 +31,7 @@
 	setTimeout(function(){	window.location.href='rms.php?page=subjects';  }, 2000);</script>";
 	} else {
 		echo "<script>
-		alert('New subject failed to record!" .$sql."');
+		alert('New subject failed to record!" .$sql."'); 
 		window.location.href='rms.php?page=subjects';
 		</script>";
 		unset($_POST);

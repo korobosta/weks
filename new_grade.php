@@ -13,12 +13,17 @@
  
 
 	$grade=$_POST['grade'];
+	$status=$_POST['status'];
 	$user = $_SESSION['ID'];
+	if ($status=='Yes'){
+		$conn->query("UPDATE grade set status='No' WHERE status='Yes'");
+		
+	}
 	
 	if($_POST['id'] == ""){
 
-	if ($sql=mysqli_query($conn, "INSERT into grade (grade) 
-		VALUES ( '$grade' )") && $sql2=mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
+	if ($sql=mysqli_query($conn, "INSERT into grade (grade,status) 
+		VALUES ( '$grade','$status' )") && $sql2=mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('added $grade in the grades list','$user',NOW() )") ){
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>New Grade Successfully Added.</h4></center></div>";
 	echo "<script>
@@ -33,7 +38,7 @@
 	}
 	}else{
 		$id=$_POST['id'];
-		$sql = "UPDATE grade SET grade='$grade' WHERE grade_id='$id'";
+		$sql = "UPDATE grade SET grade='$grade',status='$status' WHERE grade_id='$id'";
 		$sql2=mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('updated $id in the grades list','$user',NOW() )");
 		if (mysqli_query($conn, $sql)) {

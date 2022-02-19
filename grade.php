@@ -16,6 +16,7 @@
     <thead>
       <tr>
         <th style="width:20%">Semester</th>
+         <th style="width:10%">Is Active?</th>
         <th style="width:10%"></th>
       </tr>
     </thead>
@@ -34,6 +35,7 @@
       <tr>
          <input type="hidden" id="id<?php echo $row["grade_id"] ?>" name="id" value="<?php echo $row['grade_id'] ?>">
         <td><input id="grade<?php echo $row["grade_id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['grade'] ?>" readonly></td>
+        <td><input id="grade<?php echo $row["grade_id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['status'] ?>" readonly></td>
         <td><center><a onclick="update_grade(<?php echo $row["grade_id"]?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
       </tr>
     
@@ -87,7 +89,14 @@
             </p>
               </div>
             </div>
-            <div id="status"></div>
+            <label  class="cols-sm-2 control-label">Current Semester?</label>
+            <div style="padding-bottom: 10px;" id="status">
+              <select class="form-control" name="status" id="status">
+                <option>No</option>
+                <option>Yes</option>
+                
+              </select>
+            </div>
   
 
             <div class="form-group ">
