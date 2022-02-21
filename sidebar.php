@@ -11,7 +11,7 @@ $school_year=$s['school_year'];
 
  <ul class="nav navbar-nav side-nav">
  <li>
-<a href="rms.php?page=home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+<a href="rms.php?page=home"><i class="fa fa-fw fa-dashboard"></i>Admin Dashboard</a>
 </li>
 <li>
 <a id=demo1 href="javascript:void(0)" data-toggle="collapse" data-target="#masterlistCollapse"><i class="fa fa-fw fa-files-o"></i> Main <i class="fa fa-fw fa-caret-down"></i></a>
@@ -69,6 +69,9 @@ $school_year=$s['school_year'];
         </li>
         <li>
             <a href="rms.php?page=configure_fee"><i class="fa fa-fw fa-file-text-o"></i> Configure Fee </a>
+        </li>
+        <li>
+            <a href="rms.php?page=semester_units"><i class="fa fa-fw fa-file-text-o"></i> Semester Units </a>
         </li>
     </ul>
 </li>

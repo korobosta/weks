@@ -110,7 +110,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 $page = $_GET['page'];
-$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs','configure_fee');
+$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs','configure_fee','semester_units','registered_units');
 if (!empty($page)) {
     if(in_array($page,$pages)) {
         $page .= '.php';

@@ -11,7 +11,7 @@ $school_year=$s['school_year'];
 
  <ul class="nav navbar-nav side-nav">
  <li>
-<a href="rms.php?page=home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+<a href="rms.php?page=home"><i class="fa fa-fw fa-dashboard"></i>Staff Dashboard</a>
 </li>
 <li>
 <a id=demo1 href="javascript:void(0)" data-toggle="collapse" data-target="#masterlistCollapse"><i class="fa fa-fw fa-files-o"></i> Main <i class="fa fa-fw fa-caret-down"></i></a>
