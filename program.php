@@ -13,7 +13,7 @@ include 'newcurriculm.php';
      $.ajax({
           url: 'get_subject.php',
           type: 'POST',
-          data: 'prog='+prog,
+          data: {"prog":prog},
           beforeSend:function()
 {
  $("#content").html('Working on Please wait ..');
@@ -90,6 +90,20 @@ success:function(data)
                 </div>
               </div>
             </div>
+
+            <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">No. of Years</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <input type="number" class="form-control" name="no_of_years" id="no_of_years"
+                  style="width:225px"  placeholder="Enter Number of Years" min="1" max="6" />
+                  <p>
+            <?php if(isset($errors['no_of_years'])){echo "<br><br><div class='erlert'><h5>" .$errors['no_of_years']. "</h5></div>"; } ?>
+            </p>
+                </div>
+              </div>
+            </div>
+
 
             <div class="form-group">
               <label for="des" class="cols-sm-2 control-label">Description</label>

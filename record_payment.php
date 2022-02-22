@@ -1,21 +1,21 @@
 
-          <h3 class="page-header">Fee Configured <small>section</small></h3> 
+          <h3 class="page-header">Fee Payment<small>section</small></h3> 
       <?php
-            include 'process_fee_configuration.php';
+            include 'process_fee_payment.php';
                 ?> 
        <div class="col-md-8 " id="s_page">
         
              
               <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Fees</h3>
+          <h3 class="panel-title">Fee Payment</h3>
         </div> 
         <div class="panel-body">  
 
   <table id="students" class="table table-hover table-bordered">
     <thead>
       <tr>
-        <th >Course</th>
+        <th >Student</th>
         <th >Semester</th>
          <th >Amount</th>
         <th ></th>
@@ -26,7 +26,10 @@
     include 'db.php';
 
     
-    $sql=  mysqli_query($conn, "SELECT fee.id,fee.amount,program.PROGRAM,program.PROGRAM_ID,grade.grade_id,grade.grade, school_year.SY_ID,school_year.school_year FROM fee JOIN program on fee.course=program.PROGRAM_ID JOIN grade ON fee.semester=grade.grade_id JOIN school_year ON fee.school_year=school_year.SY_ID Order by fee.id ASC ");
+    $sql=  mysqli_query($conn, "SELECT payments.id,payments.amount,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME,grade.grade_id,grade.grade, school_year.SY_ID,school_year.school_year FROM payments JOIN students on payments.student=students.STUDENT_ID JOIN user on students.USER=user.USER_ID JOIN grade ON payments.semester=grade.grade_id JOIN school_year ON payments.school_year=school_year.SY_ID Order by payments.id ASC ");
+    if(!$sql){
+      echo $conn->error;
+    }
     while($row = mysqli_fetch_assoc($sql)) {
 
         $count = mysqli_num_rows($sql);
@@ -35,11 +38,11 @@
 
       <tr>
          <input type="hidden" id="id<?php echo $row["id"] ?>" name="id" value="<?php echo $row['id'] ?>">
-        <td><input id="coursename<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['PROGRAM'] ?>" readonly></td>
+        <td><input id="studentname<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['FIRSTNAME'] .' '.$row['LASTNAME'] ?>" readonly></td>
         <td><input id="semestername<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['grade'] ?>" readonly></td>
         <td><input id="amount<?php echo $row["id"] ?>"  name="" type="number" style="border:0px" value="<?php echo $row['amount'] ?>" readonly></td>
-        <td><center><a onclick="update_fee(<?php echo $row["id"]?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
-        <input id="courseid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['PROGRAM_ID'] ?>" readonly>
+        <!-- <td><center><a onclick="update_fee(<?php echo $row["id"]?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td> -->
+        <input id="studentid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['STUDENT_ID'] ?>" readonly>
         <input id="semesterid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade_id'] ?>" readonly>
         <input id="syid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['SY_ID'] ?>" readonly>
         <input id="syname<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['school_year'] ?>" readonly>
@@ -60,8 +63,8 @@
 <script>
   function update_fee($i){
       var i = $i;
-      coursetext = $("#coursename"+i).val();
-      coursevalue = $("#courseid"+i).val();
+      studenttext = $("#studentname"+i).val();
+      studentvalue = $("#studentid"+i).val();
 
       semestertext = $("#semestername"+i).val();
       semestervalue = $("#semesterid"+i).val();
@@ -71,7 +74,7 @@
 
       $("#id").val($("#id"+i).val());
       $("#amt").val($("#amount"+i).val());
-      $("#course").val(coursevalue).text(coursetext);
+      $("#student").val(studentvalue).text(studenttext);
       $("#semester").val(semestervalue).text(semestertext);
       $("#school_year").val(syid).text(syname);
       $("#head").html("Update Fee");
@@ -91,24 +94,24 @@
             <div class="container frm-new">
       <div class="row main">
         <div class="main-login main-center">
-        <h3 id="head">Configure New Fee</h3>
+        <h3 id="head">Record Fee Payment</h3>
           <form class="" method="post">
             <input type="hidden" id="id" name="id">
               
             
             <div class="form-group">
-              <label for="sub" class="cols-sm-2 control-label">Course</label>
+              <label for="sub" class="cols-sm-2 control-label">Student</label>
               <div class="cols-sm-4">
                 <div class="input-group">
-                  <select name="course" class="form-control" id="course1">
-                  <option id="course"></option>
+                  <select name="student" class="form-control" id="student1">
+                  <option id="student"></option>
                   <?php
                   include 'db.php';
-                  $sql = mysqli_query($conn,"SELECT * from program ORDER BY PROGRAM");
+                  $sql = mysqli_query($conn,"SELECT * from students JOIN user on students.USER=user.USER_ID ORDER BY students.STUDENT_ID ASC");
                   while($row=mysqli_fetch_assoc($sql)){
                    ?>
-                  <option value="<?php echo $row['PROGRAM_ID'] ?>">
-                  <?php echo $row['PROGRAM'] ?>
+                  <option value="<?php echo $row['STUDENT_ID'] ?>">
+                  <?php echo $row['FIRSTNAME'] .' '.$row['LASTNAME'] ?>
                   </option>
                   <?php } mysqli_close($conn); ?>
                   </select>

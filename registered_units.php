@@ -26,8 +26,26 @@
     <?php
     include 'db.php';
 
+    $stude_sql="";
+    $stud_units_sql="";
+
+     if($_SESSION['user_type'] == "STUDENT"){
+        $user_id=$_SESSION['ID'];
+        $student=$conn->query("SELECT STUDENT_ID,PROGRAM FROM students where USER='$user_id'");
+        if(!$student){
+          echo $conn->error;
+        }
+        $student=mysqli_fetch_assoc($student);
+        $student_id=$student['STUDENT_ID'];
+        $student_course_id=$student['PROGRAM'];
+        $stude_sql=" WHERE student=$student_id";
+        $stud_units_sql=" WHERE subjects.FOR='$student_course_id'";
+      }
+
+              
+
     
-    $sql=  mysqli_query($conn, "SELECT registered_units.id,registered_units.marks,subjects.SUBJECT_ID,subjects.SUBJECT,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME FROM registered_units JOIN students ON registered_units.student=students.STUDENT_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN user ON students.USER=user.USER_ID Order by registered_units.id ASC");
+    $sql=  mysqli_query($conn, "SELECT registered_units.id,registered_units.marks,subjects.SUBJECT_ID,subjects.SUBJECT,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME FROM registered_units JOIN students ON registered_units.student=students.STUDENT_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN user ON students.USER=user.USER_ID $stude_sql Order by registered_units.id ASC");
     if(!$sql){
       echo $conn->error;
     }
@@ -42,8 +60,9 @@
         <td><input id="studentname<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['FIRSTNAME'].' '.$row['LASTNAME'] ?>" readonly></td>
         <td><input id="unitname<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['SUBJECT'] ?>" readonly></td>
         <td><input id="marks<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['marks'] ?>" readonly></td>
-        
+        <?php if($_SESSION['user_type'] != "STUDENT"){ ?>
         <td><center><a onclick="update_data(<?php echo $row["id"]?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
+        <?php } ?>
         <input id="studentid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['STUDENT_ID'] ?>" readonly>
         <input id="unitid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['SUBJECT_ID'] ?>" readonly>
       </tr>
@@ -98,7 +117,7 @@
                   <option id="unit"></option>
                   <?php
                   include 'db.php';
-                  $sql = mysqli_query($conn,"SELECT * from subjects ORDER BY SUBJECT_ID");
+                  $sql = mysqli_query($conn,"SELECT * from subjects $stud_units_sql ORDER BY SUBJECT_ID");
                   while($row=mysqli_fetch_assoc($sql)){
                    ?>
                   <option value="<?php echo $row['SUBJECT_ID'] ?>">
@@ -111,18 +130,8 @@
             </div>
 
            
-            <?php if($_SESSION['user_type'] == "STUDENT"){
-              $user_id=$_SESSION['ID'];
-              include 'db.php';
-              $student=$conn->query("SELECT STUDENT_ID FROM students where USER='$user_id'");
-              if(!$student){
-                echo $conn->error;
-              }
-              $student=mysqli_fetch_assoc($student);
-              $student_id=$student['STUDENT_ID'];
-
-              ?>
-
+            
+            <?php if($_SESSION['user_type'] == "STUDENT"){ ?>
               <input type="hidden" name="student" value="<?php echo $student_id ?>">
             <?php } else{ ?>
             <div class="form-group">

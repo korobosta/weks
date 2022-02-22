@@ -17,12 +17,12 @@
 	$sub=$_POST['sub'];
 	$for=$_POST['f'];
 	$des=$_POST['des'];
+	$study_year=$_POST['study_year'];
 	$user= $_SESSION['ID'];
 	$lecturer=$_POST['lecturer'];
 	if($_POST['id'] == ""){
 
-	if ($sql=mysqli_query($conn, "INSERT into subjects (SUBJECT, DESCRIPTION, `FOR`,'LECTURER') 
-		VALUES ( '$sub', '$des', '$for','$lecturer' )")){
+	if ($sql=$conn->query("INSERT INTO subjects(`SUBJECT`,`FOR`,`DESCRIPTION`,`LECTURER`,study_year) VALUES('$sub','$for','$des','$lecturer','$study_year')")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('added $sub in the subject list','$user',NOW() )");
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>New Subject Successfully Added.</h4></center></div>";
@@ -39,7 +39,7 @@
 	}
 	}else{
 		$id=$_POST['id'];
-		$sql = "UPDATE subjects SET SUBJECT='$sub',DESCRIPTION='$des',`FOR`='$for',LECTURER='$lecturer' WHERE SUBJECT_ID='$id'";
+		$sql = "UPDATE subjects SET SUBJECT='$sub',DESCRIPTION='$des',`FOR`='$for',LECTURER='$lecturer',study_year='$study_year' WHERE SUBJECT_ID='$id'";
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('updated $id in the subject list','$user',NOW() )");
 
@@ -50,7 +50,7 @@
 			setTimeout(function(){	window.location.href='rms.php?page=subjects';  }, 2000);</script>";
 
 		} else {
-    echo "Error updating record: " . mysqli_error($conn);
+			echo "Error updating record: " . mysqli_error($conn);
 		}
 	}
 }else{

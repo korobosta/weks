@@ -20,6 +20,7 @@
 			
 			$_SESSION['ID'] = $use['USER_ID'];
 			$_SESSION['fname'] = $use['FIRSTNAME'];
+			$_SESSION['lname'] = $use['LASTNAME'];
 			$_SESSION['user_type'] = $use['USER_TYPE'];
 			$id =$use['USER_ID'];
 			mysqli_query($conn,"INSERT INTO history_log (transaction,user_id,date_added)VALUES('logged in','$id',NOW()) ");

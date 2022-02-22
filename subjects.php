@@ -101,12 +101,13 @@
                   style="width:200px"  placeholder="Enter Unit" value="<?php if(isset($_POST['sub'])){echo $_POST['sub'];} ?>"/>
                 </div>
                  <p>
-            <?php if(isset($errors['sub'])){echo "<div class='erlert'><h5>" .$errors['sub']. "</h5></div>"; } ?>
-            </p>
+                  <?php if(isset($errors['sub'])){echo "<div class='erlert'><h5>" .$errors['sub']. "</h5></div>"; } ?>
+                 </p>
               </div>
             </div>
+            
             <div class="form-group">
-              <label for="sub" class="cols-sm-2 control-label">For</label>
+              <label for="sub" class="cols-sm-2 control-label">Course</label>
               <div class="cols-sm-4">
                 <div class="input-group">
                   <select name="f" class="form-control" id="para1">
@@ -123,6 +124,29 @@
                   <?php } mysqli_close($conn); ?>
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="study_year" class="cols-sm-2 control-label">Study Year</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  
+
+                  <select class="form-control" name="study_year">
+                    <option></option>
+                    <?php
+                    include 'db.php';
+                    $sql = mysqli_query($conn,"SELECT * from student_study_year ORDER BY id ASC");
+                  while($row=mysqli_fetch_assoc($sql)){
+                   ?>
+                    <option value='<?php echo $row['study_year'] ?>'>Year <?php echo $row['study_year'] ?></option>
+                  <?php } ?>
+                  </select>
+                </div>
+                 <p>
+                  <?php if(isset($errors['study_year'])){echo "<div class='erlert'><h5>" .$errors['study_year']. "</h5></div>"; } ?>
+                 </p>
               </div>
             </div>
 

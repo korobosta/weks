@@ -5,12 +5,13 @@ $prog = $_POST['prog'];
    <table class="table table-bordered">
   <thead>
     <tr>
-      <th class="col-md-4">Subjects</th>
+      <th class="col-md-4">Units for <?php echo $prog ?></th>
     </tr> 
     <tbody>
     <?php 
     include 'db.php';
-    $query = mysqli_query($conn,"SELECT * FROM subjects Where `FOR`= '$prog' order by SUBJECT ");
+    $query = mysqli_query($conn,"SELECT * FROM subjects LEFT JOIN program ON subjects.FOR=program.PROGRAM_ID Where program.PROGRAM= '$prog'");
+
     $count = mysqli_num_rows($query);
     if($count > 0){
       while($row = mysqli_fetch_assoc($query)){

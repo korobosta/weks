@@ -11,12 +11,16 @@
 	if(preg_match("/\S+/", $_POST['des']) === 0){
 		$errors['des'] = "* Description is required.";
 	}
+	if(preg_match("/\S+/", $_POST['no_of_years']) === 0){
+		$errors['no_of_years'] = "* no_of_years is required.";
+	}
 	if(count($errors) === 0){
 	$cur=$_POST['cur'];
 	$des=$_POST['des'];
+	$no_of_years=$_POST['no_of_years'];
 	$user = $_SESSION['ID'];
 	if(empty($_POST['id'])){
-		$sql=mysqli_query($conn, "INSERT into program (PROGRAM, DESCRIPTION) VALUES ( '$cur', '$des' )");
+		$sql=mysqli_query($conn, "INSERT into program (PROGRAM, DESCRIPTION,no_of_years) VALUES ( '$cur', '$des','$no_of_years' )");
 	}else{
 		$sql=mysqli_query($conn, "UPDATE program set PROGRAM='$cur', `DESCRIPTION`='$des' where PROGRAM_ID = ".$_POST['id']);
 	}

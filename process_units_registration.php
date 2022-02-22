@@ -18,6 +18,18 @@
 	$marks=$_POST['marks'];
 	$user= $_SESSION['ID'];
 
+	$current_study_year=$conn->query("SELECT study_year from students WHERE STUDENT_ID='$student' LIMIT 1");
+	$current_study_year=mysqli_fetch_assoc($current_study_year);
+	$current_study_year=$current_study_year['study_year'];
+
+	$current_school_year=$conn->query("SELECT SY_ID from school_year WHERE status='Yes' LIMIT 1");
+	$current_school_year=mysqli_fetch_assoc($current_school_year);
+	$current_school_year=$current_school_year['SY_ID'];
+
+	$current_semester=$conn->query("SELECT grade_id from grade WHERE status='Yes' LIMIT 1");
+	$current_semester=mysqli_fetch_assoc($current_semester);
+	$current_semester=$current_semester['grade_id'];
+
 
 
 	if($_POST['id'] == ""){
@@ -29,8 +41,8 @@
 
 	else{
 
-	if ($sql=mysqli_query($conn, "INSERT into registered_units (unit, student) 
-		VALUES ( '$unit', '$student')")){
+	if ($sql=mysqli_query($conn, "INSERT into registered_units (unit, student,school_year,semester,study_year) 
+		VALUES ( '$unit', '$student','$current_school_year','$current_semester','$current_study_year')")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('registered unit for student ','$user',NOW() )");
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Unit Registered Successfully </h4></center></div>";

@@ -5,19 +5,15 @@ $query = mysqli_query($conn,"SELECT * FROM school_year where status='Yes' ");
 $s = mysqli_fetch_assoc($query);
 $school_year=$s['school_year'];
 ?>
-
-
-
-
  <ul class="nav navbar-nav side-nav">
  <li>
-<a href="rms.php?page=home"><i class="fa fa-fw fa-dashboard"></i>Student Dashboard</a>
+<a href="rms.php?page=home"><i class="fa fa-fw fa-dashboard"></i>Finance Dashboard</a>
 </li>
 <li>
 <a id=demo1 href="javascript:void(0)" data-toggle="collapse" data-target="#masterlistCollapse"><i class="fa fa-fw fa-files-o"></i> Main <i class="fa fa-fw fa-caret-down"></i></a>
 <ul id="masterlistCollapse" class="collapse">
     <li>
-        <a href="rms.php?page=registered_units"><i class="fa fa-fw fa-users"></i> Units</a>
+        <a href="rms.php?page=record_payment"><i class="fa fa-fw fa-users"></i> Record Fee Payment</a>
     </li>
 </ul>
 </li>
@@ -25,10 +21,7 @@ $school_year=$s['school_year'];
     <a href="javascript:void(0)" data-toggle="collapse" data-target="#reportsCollapse"><i class="fa fa-fw fa-file"></i> Reports       <i class="fa fa-fw fa-caret-down"></i></a>
     <ul id="reportsCollapse" class="collapse">
         <li>
-            <a href="rms.php?page=student_performance_report"><i class="fa fa-fw fa-files-o"></i>Performance</a>
-        </li>
-        <li>
-            <a href="rms.php?page=student_payment_report"><i class="fa fa-fw fa-files-o"></i>Fee Payment</a>
+            <a href="rms.php?page=finance_fee_payment_report"><i class="fa fa-fw fa-files-o"></i>Fee Payment</a>
         </li>
     </ul>
 </li>
