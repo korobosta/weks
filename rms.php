@@ -99,6 +99,9 @@
             else if ($row['USER_TYPE'] == 'FINANCE'){
                 include 'sidebar_finance.php';
             }
+            else if ($row['USER_TYPE'] == 'LECTURER'){
+                include 'sidebar_lecturer.php';
+            }
 
             ?>
             </div>
@@ -114,7 +117,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 $page = $_GET['page'];
-$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs','configure_fee','semester_units','registered_units','student_performance_report','student_payment_report','finance_fee_payment_report','record_payment');
+$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs','configure_fee','semester_units','registered_units','student_performance_report','student_payment_report','finance_fee_payment_report','record_payment','lecturer_student_scores','students_report','courses_report','units_report','student_performance_report_admin');
 if (!empty($page)) {
     if(in_array($page,$pages)) {
         $page .= '.php';
@@ -140,8 +143,8 @@ if (!empty($page)) {
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Manage Acount</h4>
         </div>
-        <div class="modal-body">
-        <div class="container">
+        <div class="modal-body"> 
+        <div class="container"> 
          <?php
     include 'db.php';
     $sql=  mysqli_query($conn, "SELECT * FROM user where USER_ID = '".$_SESSION['ID']."'");

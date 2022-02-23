@@ -27,7 +27,7 @@ $school_year=$s['school_year'];
     </li>
 </ul>
 </li>
-<li>
+<!-- <li>
     <a href="javascript:void(0)" data-toggle="collapse" data-target="#recordsCollapse"><i class="fa fa-fw fa-file"></i> Records       <i class="fa fa-fw fa-caret-down"></i></a>
     <ul class="collapse" id="recordsCollapse">
         <li>
@@ -40,19 +40,26 @@ $school_year=$s['school_year'];
             <a href="rms.php?page=candidates_list&sy=<?php echo $school_year ?>"><i class="fa fa-fw fa-file-o"></i> Students List </a>
         </li>
     </ul>
-</li>
+</li> -->
 <li>
     <a href="javascript:void(0)" data-toggle="collapse" data-target="#reportsCollapse"><i class="fa fa-fw fa-file"></i> Reports       <i class="fa fa-fw fa-caret-down"></i></a>
     <ul id="reportsCollapse" class="collapse">
         <li>
-            <a href="rms.php?page=report"><i class="fa fa-fw fa-files-o"></i> Print Marks</a>
+            <a href="rms.php?page=students_report"><i class="fa fa-fw fa-files-o"></i> Students</a>
         </li>
         <li>
-            <a href="#" data-toggle="modal" data-target="#s_report"><i class="fa fa-fw fa-files-o"></i> Students List</a>
+            <a href="rms.php?page=courses_report"><i class="fa fa-fw fa-files-o"></i> Courses</a>
         </li>
         <li>
-            <a href="rms.php?page=candidates_report&school_year=<?php echo $school_year ?>" ><i class="fa fa-fw fa-file-text-o"></i> Students Report</a>
+            <a href="rms.php?page=units_report"><i class="fa fa-fw fa-files-o"></i> Units</a>
         </li>
+        <li>
+            <a href="rms.php?page=student_performance_report_admin"><i class="fa fa-fw fa-files-o"></i> Student Performance</a>
+        </li>
+        <li>
+            <a href="rms.php?page=finance_fee_payment_report"><i class="fa fa-fw fa-files-o"></i> Fee Payment</a>
+        </li>
+        
     </ul>
 </li>
 <li>

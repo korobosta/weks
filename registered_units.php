@@ -1,13 +1,37 @@
+<h3>My Assigned Units</h3>
 
+
+    <table id="students" class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th>Unit Name</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+    include 'db.php';
+    $user_id=$_SESSION['ID'];
+    $query=$conn->query("SELECT * from subjects WHERE LECTURER='$user_id'");
+    while($row=mysqli_fetch_array($query)){
+      ?>
+      <tr>
+        <td><?php echo $row['SUBJECT'] ?></td>
+      </tr>
+      <?php 
+    }
+    ?>
+  </tbody>
+      
+    </table>
+          
           <h3 class="page-header"> Registerd Units <small>section</small></h3> 
       <?php
             include 'process_units_registration.php';
             
                 ?> 
        <div class="col-md-8 " id="s_page">
-        
-             
-              <div class="panel panel-default">
+        <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title"> Registerd Units</h3>
         </div> 
@@ -17,9 +41,9 @@
     <thead>
       <tr>
         <th>Student</th>
-        <th >Unit</th>
-        <th >Marks</th>
-        <th ></th>
+        <th>Unit</th>
+        <th>Marks</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -38,14 +62,20 @@
         $student=mysqli_fetch_assoc($student);
         $student_id=$student['STUDENT_ID'];
         $student_course_id=$student['PROGRAM'];
-        $stude_sql=" WHERE student=$student_id";
-        $stud_units_sql=" WHERE subjects.FOR='$student_course_id'";
+        $more_sql=" WHERE student=$student_id";
+        $more_units_sql=" WHERE subjects.FOR='$student_course_id'";
+      }
+
+      if($_SESSION['user_type'] == "LECTURER"){
+        $user_id=$_SESSION['ID'];
+        $more_sql=" WHERE subjects.LECTURER=$user_id";
+        $more_units_sql=" WHERE subjects.LECTURER='$user_id' ";
       }
 
               
 
     
-    $sql=  mysqli_query($conn, "SELECT registered_units.id,registered_units.marks,subjects.SUBJECT_ID,subjects.SUBJECT,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME FROM registered_units JOIN students ON registered_units.student=students.STUDENT_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN user ON students.USER=user.USER_ID $stude_sql Order by registered_units.id ASC");
+    $sql=  mysqli_query($conn, "SELECT registered_units.id,registered_units.marks,subjects.SUBJECT_ID,subjects.SUBJECT,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME FROM registered_units JOIN students ON registered_units.student=students.STUDENT_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN user ON students.USER=user.USER_ID $more_sql Order by registered_units.id ASC");
     if(!$sql){
       echo $conn->error;
     }
@@ -117,7 +147,7 @@
                   <option id="unit"></option>
                   <?php
                   include 'db.php';
-                  $sql = mysqli_query($conn,"SELECT * from subjects $stud_units_sql ORDER BY SUBJECT_ID");
+                  $sql = mysqli_query($conn,"SELECT * from subjects $more_units_sql ORDER BY SUBJECT_ID");
                   while($row=mysqli_fetch_assoc($sql)){
                    ?>
                   <option value="<?php echo $row['SUBJECT_ID'] ?>">
@@ -179,3 +209,5 @@
 
     </div>
     </div>
+
+

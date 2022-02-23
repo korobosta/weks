@@ -39,10 +39,10 @@
 
 	else{
 
-	
+		$payment_date=date('Y-m-d H:i:s');
 
-	if ($sql=mysqli_query($conn, "INSERT into payments (student, semester, amount,school_year,study_year) 
-		VALUES ( '$student', '$semester', '$amount','$school_year','$study_year')")){
+	if ($sql=mysqli_query($conn, "INSERT into payments (student, semester, amount,school_year,study_year,payment_date) 
+		VALUES ( '$student', '$semester', '$amount','$school_year','$study_year','$payment_date')")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('recorded fee for student $student','$user',NOW() )");
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Fee Record added Successfully </h4></center></div>";

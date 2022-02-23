@@ -41,6 +41,17 @@
 
 	else{
 
+		$fee_payment=$conn->query("SELECT id FROM payments WHERE student='$student' AND semester='$current_semester' AND study_year='$current_study_year' AND school_year='$current_school_year'");
+		if(mysqli_num_rows($fee_payment) < 1){
+			echo "<b style='color:red'>Fee payment not done</b> ";
+
+		}
+		else{
+
+		
+
+
+
 	if ($sql=mysqli_query($conn, "INSERT into registered_units (unit, student,school_year,semester,study_year) 
 		VALUES ( '$unit', '$student','$current_school_year','$current_semester','$current_study_year')")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
@@ -57,6 +68,7 @@
 		unset($_POST);
  
 	}
+}
 	}
     }else{
 		$id=$_POST['id'];
