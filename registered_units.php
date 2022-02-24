@@ -1,3 +1,4 @@
+<?php if($_SESSION['user_type'] == "LECTURER"){ ?>
 <h3>My Assigned Units</h3>
 
 
@@ -24,6 +25,7 @@
   </tbody>
       
     </table>
+  <?php } ?>
           
           <h3 class="page-header"> Registerd Units <small>section</small></h3> 
       <?php

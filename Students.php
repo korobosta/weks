@@ -78,7 +78,7 @@ success:function(data)
 <div class="form-group">
   <label class="col-xs-4 control-label" for="lrn">Reg No.</label>  
   <div class="col-xs-6">
-  <input id="lrn" name="registration_number" type="text" placeholder="Enter Reg " maxlength="12" class="form-control input-xs" required="">
+  <input id="lrn" name="registration_number" minlength="5" type="text" placeholder="Enter Reg " maxlength="15" class="form-control input-xs" required="">
   </div>
 </div>
 
@@ -92,7 +92,7 @@ success:function(data)
       <input id="name" class="form-control input-xs"
       style="text-transform: capitalize;" name="fname" placeholder="Firstname"  type="text" required="">
       <input id="name" class="form-control input-xs"
-      style="text-transform: capitalize;" name="mname" placeholder="Middlename"  type="text" required="">
+      style="text-transform: capitalize;" name="mname" placeholder="Middlename"  type="text">
 
     </div>
   </div>
@@ -108,14 +108,7 @@ success:function(data)
   </div>
 </div>
 
-<!-- <div class="form-group">
-  <label class="col-xs-4 control-label" for="address">Birth Place</label>
-  <div class="col-xs-8">
-    <div class="input-group">
-      <input id="address" class="form-control"
-      style="text-transform: capitalize;" name="bp" placeholder="Birth Place"  type="text" required="">    </div>
-  </div>
-</div> -->
+
 </div>
 
 
@@ -127,28 +120,28 @@ success:function(data)
 <div class="form-group">
   <label class="col-xs-5 control-label" for="dob">Date of Birth</label>  
   <div class="col-xs-7">
-  <input id="dob" name="dob" type="date" placeholder="YYYY-MM-DD" class="form-control input-md" required="">
+  <input id="dob" name="dob" type="date" placeholder="YYYY-MM-DD" class="form-control input-md" required="" max="2007-01-01">
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-xs-5 control-label" for="pob">ADDRESS</label>  
   <div class="col-xs-7">
-  <input id="pob" name="address" type="text" style="text-transform: capitalize;" placeholder="Enter Student Address" class="form-control input-xs" required="">
+  <input id="pob" name="address" type="text"  placeholder="Enter Student Address" class="form-control input-xs" required="">
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-xs-5 control-label" for="pob">EMAIL(Username)</label>  
+  <label class="col-xs-5 control-label" for="pob">EMAIL</label>  
   <div class="col-xs-7">
-  <input id="pob" name="email" type="email" style="text-transform: capitalize;" placeholder="Enter Student Email" class="form-control input-xs" required="">
+  <input id="pob" name="email" type="email" placeholder="Enter Student Email" class="form-control input-xs" required="">
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-xs-5 control-label" for="pob">PASSWORD</label>  
   <div class="col-xs-7">
-  <input id="pob" name="password" type="password" style="text-transform: capitalize;" placeholder="Enter Student Password" class="form-control input-xs" required="">
+  <input id="pob" name="password" type="password" placeholder="Enter Student Password" class="form-control input-xs" required="">
   </div>
 </div>
 
@@ -187,16 +180,40 @@ success:function(data)
   <label class="col-xs-2 control-label" for="tn">Year of Completing High School</label> 
   <br>
   <div class="col-xs-6">
-  <input id="tn" name="" type="hs_year_completed" style="width:100px;text-align:right"
+   <select id="tn" name="" type="hs_year_completed" style="width:100px;"
    class="form-control input-xs" required="">
+   <?php 
+   $current_year=date('Y');
+   for($i=1;$i<=20;$i++){
+
+   
+    ?>
+   <option><?php echo $current_year; ?> </option>
+
+   <?php $current_year=$current_year-1; } ?>
+   
+   </select>
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-xs-2 control-label" for="ave">KCSE GRADE</label> 
   <div class="col-xs-6">
-  <input id="ave" name="hs_grade" type="text" style="width:100px;text-align:right"
-   class="form-control input-xs" required="">
+  
+   <select  name="hs_grade" type="text" 
+   class="form-control input-xs" required="" style="width:100px;">
+     <option>A</option>
+     <option>A-</option>
+     <option>B+</option>
+     <option>B</option>
+     <option>B-</option>
+     <option>C+</option>
+     <option>C</option>
+     <option>C-</option>
+     <option>D+</option>
+     <option>D</option>
+     <option>D-</option>
+   </select>
 
   </div>
 </div>

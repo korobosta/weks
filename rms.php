@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- <link rel="icon" href="images/logo.jpg"> -->
-    <title>WEKS COLLEGE MANAGEMENT SYSTEM</title>
+    <title>WEKS COLLEGE</title>
     <link href="asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="asset/css/sb-admin.css" rel="stylesheet">
     <link href="asset/css/plugins/morris.css" rel="stylesheet">
@@ -45,7 +45,7 @@
                   <!-- <img src="" style="height:48px;width:50px;align:center" alt=""> -->
                 </div>
                                 
-                <a class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; WEKS COLLEGE MANAGEMENT SYSTEM</b></a>
+                <a class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; WEKS COLLEGE</b></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">

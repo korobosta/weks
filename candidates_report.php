@@ -42,7 +42,7 @@
 			
 		</td>
 		<td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
-		<p><b>WEKS COLLEGE MANAGEMENT SYSTEM</b></p>
+		<p><b>WEKS COLLEGE</b></p>
 		<p>Student Candidates for Promotion List</p>
 		<p> (<?php echo $_GET['school_year'] ?>)</p>	
 		</td>

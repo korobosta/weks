@@ -23,7 +23,7 @@ $school_year=$s['school_year'];
         <a href="rms.php?page=subjects"><i class="fa fa-fw fa-book"></i> Units List</a>
     </li>
     <li class="">
-        <a href="rms.php?page=program"><i class="fa fa-fw fa-bars"></i> Curriculum/Course</a>
+        <a href="rms.php?page=program"><i class="fa fa-fw fa-bars"></i> Course</a>
     </li>
 </ul>
 </li>
@@ -77,9 +77,7 @@ $school_year=$s['school_year'];
         <li>
             <a href="rms.php?page=configure_fee"><i class="fa fa-fw fa-file-text-o"></i> Configure Fee </a>
         </li>
-        <li>
-            <a href="rms.php?page=semester_units"><i class="fa fa-fw fa-file-text-o"></i> Semester Units </a>
-        </li>
+        
     </ul>
 </li>
 

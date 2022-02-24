@@ -127,7 +127,7 @@
                   <option id="school_year"></option>
                   <?php
                   include 'db.php';
-                  $sql = mysqli_query($conn,"SELECT * from school_year ORDER BY SY_ID");
+                  $sql = mysqli_query($conn,"SELECT * from school_year WHERE status='Yes' ORDER BY SY_ID");
                   while($row=mysqli_fetch_assoc($sql)){
                    ?>
                   <option value="<?php echo $row['SY_ID'] ?>">
@@ -147,7 +147,7 @@
                   <option id="semester"></option>
                   <?php
                   include 'db.php';
-                  $sql = mysqli_query($conn,"SELECT * from grade ORDER BY grade_id");
+                  $sql = mysqli_query($conn,"SELECT * from grade WHERE status='Yes' ORDER BY grade_id");
                   while($row=mysqli_fetch_assoc($sql)){
                    ?>
                   <option value="<?php echo $row['grade_id'] ?>">
@@ -165,7 +165,7 @@
                 <div class="input-group">
                   
 
-                  <select class="form-control" name="study_year">
+                  <select class="form-control" name="study_year" id="study_year1" onchange="updateAmount()">
                     <option></option>
                     <?php
                     include 'db.php';
@@ -203,3 +203,32 @@
 
     </div>
     </div>
+
+
+    <script type="text/javascript">
+      function updateAmount(){
+        var school_year=document.getElementById('school_year1').value;
+        var semester=document.getElementById('semester1').value;
+        var student=document.getElementById('student1').value;
+        var study_year=document.getElementById('study_year1').value;
+
+        $.ajax({
+                        type: 'POST',
+                        url: "process_update_amount.php",
+                        data: {
+                        'school_year': school_year,
+                        'semester': semester,
+                        'student': student,
+                        'study_year': study_year,
+                        },
+                        success: function (response) {
+                        if (response){
+                            document.getElementById("amt").value = response;
+                            
+                        }
+                         
+        
+                        }
+                });
+      }
+    </script>

@@ -1,5 +1,5 @@
 
-          <h1 class="page-header">Units/Subjects</h1>
+          <h1 class="page-header">Units</h1>
       <?php
             include 'newsubject.php';
                 ?> 
@@ -26,7 +26,7 @@
     include 'db.php'; 
 
     
-    $sql=  mysqli_query($conn, "SELECT subjects.SUBJECT_ID,subjects.SUBJECT,subjects.DESCRIPTION,program.PROGRAM,program.PROGRAM_ID,user.USER_ID,user.FIRSTNAME, user.LASTNAME FROM subjects LEFT JOIN program ON subjects.FOR=program.PROGRAM_ID JOIN user ON subjects.LECTURER=user.USER_ID Order by subjects.SUBJECT  ");
+    $sql=  mysqli_query($conn, "SELECT subjects.SUBJECT_ID,subjects.SUBJECT,subjects.DESCRIPTION,program.PROGRAM,program.PROGRAM_ID,user.USER_ID,user.FIRSTNAME, user.LASTNAME,student_study_year.id as student_study_year_id,student_study_year.study_year,grade.* FROM subjects LEFT JOIN program ON subjects.FOR=program.PROGRAM_ID JOIN user ON subjects.LECTURER=user.USER_ID JOIN student_study_year on subjects.study_year=student_study_year.id JOIN grade on subjects.grade=grade.grade_id Order by subjects.SUBJECT  ");
     if(!$sql){
       echo $conn->error;
     }
@@ -38,12 +38,17 @@
 
       <tr>
          <input type="hidden" id="id<?php echo $row["SUBJECT_ID"] ?>" name="id" value="<?php echo $row['SUBJECT_ID'] ?>">
-        <td><input id="sub<?php echo $row["SUBJECT_ID"] ?>"  name="subj" type="text" style="border:0px" value="<?php echo $row['SUBJECT'] ?>" readonly></td>
+        <td><input id="sub<?php echo $row["SUBJECT_ID"] ?>"  name="subj" type="text" style="border:0px" value="<?php echo $row['SUBJECT']  ?>" readonly></td>
           <td><input id="para<?php echo $row["SUBJECT_ID"] ?>"  name="subj" type="text" style="border:0px" value="<?php echo $row['PROGRAM'] ?>" readonly></td>
           <input id="paravalue<?php echo $row["SUBJECT_ID"] ?>"  name="paravalue" type="hidden" style="border:0px" value="<?php echo $row['PROGRAM_ID'] ?>" readonly>
 
           <input id="lecname<?php echo $row["SUBJECT_ID"] ?>"  name="lecname" type="hidden" style="border:0px" value="<?php echo $row['FIRSTNAME']   . ' ' . $row['LASTNAME']  ?>" readonly>
           <input id="lecid<?php echo $row["SUBJECT_ID"] ?>"  name="lecid" type="hidden" style="border:0px" value="<?php echo $row['USER_ID'] ?>" readonly>
+          <input id="semestername<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade'] ?>" readonly>
+          <input id="semesterid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade_id'] ?>" readonly>
+
+          <input id="syname<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['study_year'] ?>" readonly>
+          <input id="syid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['student_study_year_id'] ?>" readonly>
 
         <td><input id="des<?php echo $row["SUBJECT_ID"] ?>" name="desc" type="text" style="border:0px;width:100%" value="<?php echo $row['DESCRIPTION'] ?>" readonly></td>
         <td><center><a onclick="update_subject(<?php echo $row["SUBJECT_ID"] ?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
@@ -70,6 +75,12 @@
       lectext = $("#lecname"+i).val();
       lecvalue = $("#lecid"+i).val();
 
+      syname = $("#syname"+i).val();
+      syvalue = $("#syid"+i).val();
+
+      semestertext = $("#semestername"+i).val();
+      semestervalue = $("#semesterid"+i).val();
+
       $("#id").val($("#id"+i).val());
       $("#sub").val($("#sub"+i).val());
       $("#para").val(paravalue).text(paratext);
@@ -77,6 +88,8 @@
       $("#des").val($("#des"+i).val());
       $("#head").html("Update Subject");
       $("#btn_add").html("Update");
+      $("#semester").val(semestervalue).text(semestertext);
+      $("#syr").val(syvalue).text(syname);
       //$('#para1').append($('<option>').val(paravalue).text(paratext))
 
 
@@ -84,10 +97,10 @@
 </script>
 
 
-      <div class="col-md-4" id="">
+  <div class="col-md-4" id="" >
         
-            <div class="container frm-new">
-      <div class="row main">
+    <div class="container frm-new">
+      <div  class="row main">
         <div class="main-login main-center">
         <h3 id="head">Add New Unit</h3>
           <form class="" method="post">
@@ -131,10 +144,8 @@
               <label for="study_year" class="cols-sm-2 control-label">Study Year</label>
               <div class="cols-sm-4">
                 <div class="input-group">
-                  
-
-                  <select class="form-control" name="study_year">
-                    <option></option>
+                  <select class="form-control" name="study_year" id="syr1">
+                    <option id="syr"></option>
                     <?php
                     include 'db.php';
                     $sql = mysqli_query($conn,"SELECT * from student_study_year ORDER BY id ASC");
@@ -147,6 +158,26 @@
                  <p>
                   <?php if(isset($errors['study_year'])){echo "<div class='erlert'><h5>" .$errors['study_year']. "</h5></div>"; } ?>
                  </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">Semester</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <select name="semester" class="form-control" id="semester1">
+                  <option id="semester"></option>
+                  <?php
+                  include 'db.php';
+                  $sql = mysqli_query($conn,"SELECT * from grade ORDER BY grade_id");
+                  while($row=mysqli_fetch_assoc($sql)){
+                   ?>
+                  <option value="<?php echo $row['grade_id'] ?>">
+                  <?php echo $row['grade'] ?>
+                  </option>
+                  <?php } mysqli_close($conn); ?>
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -170,22 +201,23 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="des" class="cols-sm-2 control-label">Description</label>
               <div class="cols-sm-4">
                 <div class="input-group">
-                  <textarea type="text" class="form-control" name="des" id="des" style="width:225px;height:50px" placeholder="Enter Description" value="<?php if(isset($_POST['des'])){echo $_POST['des'];} ?>"/>
+                  <textarea type="hidden" class="form-control" name="des" id="des" style="width:225px;height:50px" placeholder="Enter Description" value="<?php if(isset($_POST['des'])){echo $_POST['des'];} ?>">
                   </textarea>
                 </div>
-             <p>
-            <?php if(isset($errors['des'])){echo "<div class='erlert'><h5>" .$errors['des']. "</h5></div>"; } ?>
-            </p>
+                <p>
+                  <?php if(isset($errors['des'])){echo "<div class='erlert'><h5>" .$errors['des']. "</h5></div>"; } ?>
+                </p>
               </div>
-            </div>
+            </div>  -->
+            <input type="hidden" name="des">
 
 
             <div class="form-group ">
-            <input type="reset" class="btn btn-info " id="reset" name="reset" value="Cancel">
+              <input type="reset" class="btn btn-info " id="reset" name="reset" value="Cancel">
               <button class="btn btn-info" id="btn_add">Add</button>
             </div>
             

@@ -17,7 +17,7 @@ $pass=md5($_POST['password']);
 $address=$_POST['address'];
 $gender=$_POST['gender'];
 $email = $_POST['email'];
-$user = $_SESSION['ID'];
+$user = $_SESSION['ID']; 
 $user_type="STUDENT";
 $dob=$_POST['dob'];
 $program=$_POST['program'];
@@ -34,10 +34,9 @@ $search_query = mysqli_query($conn, "SELECT * FROM students WHERE REGISTRATION_N
 			 location.replace(document.referrer);
 			</script>";
 		}else{
+			
 
-			print($pass);
-
-			$user_sql="INSERT INTO user(LASTNAME,FIRSTNAME,MIDDLE_NAME,USER_TYPE,ADDRESS,GENDER,EMAIL,DOB,USERNAME,PASSWORD)
+			$user_sql="INSERT INTO user(LASTNAME,FIRSTNAME,MIDDLE_NAME,USER_TYPE,`ADDRESS`,GENDER,EMAIL,DOB,USERNAME,PASSWORD)
 			          VALUES('$lname','$fname','$mname','$user_type','$address','$gender','$email','$dob','$email','$pass')
 
 			";

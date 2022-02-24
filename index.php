@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>WEKS COLLEGE MANAGEMENT SYSTEM</title>
+    <title>WEKS COLLEGE</title>
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <h2>WEKS COLLEGE MANAGEMENT SYSTEM</h2>
+          <h2>WEKS COLLEGE</h2>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
 
@@ -67,7 +67,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">WEKS COLLEGE MANAGEMENT SYSTEM</p>
+        <p class="text-muted">WEKS COLLEGE</p>
       </div>
     </footer>
 

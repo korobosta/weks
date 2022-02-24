@@ -42,7 +42,7 @@
 		
 		</td>
 		<td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
-		<p><b>WEKS COLLEGE MANAGEMENT SYSTEM</b></p>
+		<p><b>WEKS COLLEGE</b></p>
 		<p style="padding:5px; font-weight: bold; color:green" >Performance for Students</p>
 		</td>
 		

@@ -50,7 +50,7 @@ $student_course=$student['PROGRAM'];
 		
 		</td>
 		<td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
-		<p><b>WEKS COLLEGE MANAGEMENT SYSTEM</b></p>
+		<p><b>WEKS COLLEGE</b></p>
 		<p style="padding:5px; font-weight: bold; color:green" >Fee Payments for <?php echo $_SESSION['fname']. ' '.$_SESSION['lname']  ?></p>
 		<p style="padding:10px; font-weight: bold; color:teal"><?php echo $student_course  ?></p>	
 		</td>

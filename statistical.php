@@ -40,7 +40,7 @@
       <br><br>
     </td>
     <td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
-    <p><b>WEKS COLLEGE MANAGEMENT SYSTEM</b></p>
+    <p><b>WEKS COLLEGE</b></p>
     <p>Bungoma</p>
     <p>Student Records</p>
     <p>(<?php echo $_POST['sy'] ?>)</p> 
