@@ -13,6 +13,9 @@ $school_year=$s['school_year'];
 <a id=demo1 href="javascript:void(0)" data-toggle="collapse" data-target="#masterlistCollapse"><i class="fa fa-fw fa-files-o"></i> Main <i class="fa fa-fw fa-caret-down"></i></a>
 <ul id="masterlistCollapse" class="collapse">
     <li>
+            <a href="rms.php?page=configure_fee"><i class="fa fa-fw fa-file-text-o"></i> Configure Fee </a>
+        </li>
+    <li>
         <a href="rms.php?page=record_payment"><i class="fa fa-fw fa-users"></i> Record Fee Payment</a>
     </li>
 </ul>
@@ -20,9 +23,11 @@ $school_year=$s['school_year'];
 <li>
     <a href="javascript:void(0)" data-toggle="collapse" data-target="#reportsCollapse"><i class="fa fa-fw fa-file"></i> Reports       <i class="fa fa-fw fa-caret-down"></i></a>
     <ul id="reportsCollapse" class="collapse">
+
         <li>
             <a href="rms.php?page=finance_fee_payment_report"><i class="fa fa-fw fa-files-o"></i>Fee Payment</a>
         </li>
+
     </ul>
 </li>
 </ul>

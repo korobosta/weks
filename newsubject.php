@@ -3,16 +3,17 @@
 	include 'db.php';
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+
+
 	$errors = array();
 
 	if(preg_match("/\S+/", $_POST['sub']) === 0){
 		$errors['sub'] = "* Subject is required.";
 	}
-	if(preg_match("/\S+/", $_POST['des']) === 0){
-		$errors['des'] = "* Description is required.";
-	}
+	// if(preg_match("/\S+/", $_POST['des']) === 0){
+	// 	$errors['des'] = "* Description is required.";
+	// }
 	if(count($errors) === 0){
-
 
 	$sub=$_POST['sub'];
 	$for=$_POST['f'];
@@ -20,9 +21,10 @@
 	$study_year=$_POST['study_year'];
 	$user= $_SESSION['ID'];
 	$lecturer=$_POST['lecturer'];
+	$semester=$_POST['semester'];
 	if($_POST['id'] == ""){
 
-	if ($sql=$conn->query("INSERT INTO subjects(`SUBJECT`,`FOR`,`DESCRIPTION`,`LECTURER`,study_year) VALUES('$sub','$for','$des','$lecturer','$study_year')")){
+	if ($sql=$conn->query("INSERT INTO subjects(`SUBJECT`,`FOR`,`DESCRIPTION`,`LECTURER`,study_year,semester) VALUES('$sub','$for','$des','$lecturer','$study_year','$semester')")){
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('added $sub in the subject list','$user',NOW() )");
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>New Subject Successfully Added.</h4></center></div>";
@@ -54,6 +56,7 @@
 		}
 	}
 }else{
+
 	echo "<script>setTimeout(function(){	$('.erlert').hide()  }, 3000);</script>";
 }
 

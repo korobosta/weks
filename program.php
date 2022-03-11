@@ -32,7 +32,7 @@ success:function(data)
        <div class="col-md-8">
        <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">List of Curriculum/Courses</h3>
+          <h3 class="panel-title">List of Courses</h3>
         </div> 
         <div class="panel-body">     
   <table id="students" class="table table-hover table-bordered">
@@ -75,7 +75,7 @@ success:function(data)
             <div class="container frm-new">
       <div class="row main">
         <div class="main-login main-center">
-        <h3>Add New Curriculum/Course</h3>
+        <h3>Add New Course</h3>
           <form class="" method="post" >
             <input type="hidden" name="id">
             <div class="form-group">

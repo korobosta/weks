@@ -40,12 +40,15 @@
          <input type="hidden" id="id<?php echo $row["id"] ?>" name="id" value="<?php echo $row['id'] ?>">
         <td><input id="studentname<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['FIRSTNAME'] .' '.$row['LASTNAME'] ?>" readonly></td>
         <td><input id="semestername<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['grade'] ?>" readonly></td>
-        <td><input id="amount<?php echo $row["id"] ?>"  name="" type="number" style="border:0px" value="<?php echo $row['amount'] ?>" readonly></td>
+        <td><input id="amount<?php echo $row["id"] ?>"  name="" type="number" style="border:0px" value="<?php echo $row['amount'] ?>" readonly>
+
+        </td>
         <!-- <td><center><a onclick="update_fee(<?php echo $row["id"]?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td> -->
         <input id="studentid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['STUDENT_ID'] ?>" readonly>
         <input id="semesterid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade_id'] ?>" readonly>
         <input id="syid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['SY_ID'] ?>" readonly>
         <input id="syname<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['school_year'] ?>" readonly>
+        <td><a href="print.php?id=<?php echo $row['id'] ?>">Print</a></td>
       </tr>
     
       <?php
@@ -91,11 +94,11 @@
 
       <div class="col-md-4" id="">
         
-            <div class="container frm-new">
+            <div style="background-color:rgba(208, 212, 209, 0.23);padding-left:30px" class="">
       <div class="row main">
         <div class="main-login main-center">
         <h3 id="head">Record Fee Payment</h3>
-          <form class="" method="post">
+          <form  class="" method="post">
             <input type="hidden" id="id" name="id">
               
             
@@ -187,6 +190,18 @@
               <div class="cols-sm-4">
                 <div class="input-group">
                   <input class="form-control" type="number" min="1" name="amount" id="amt">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">Payment Method</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <select name="payment_method" class="form-control" id="payment_method">
+                    <option>Bank</option>
+                    <option>Mpesa</option>
+                  </select>
                 </div>
               </div>
             </div>

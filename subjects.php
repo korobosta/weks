@@ -44,11 +44,11 @@
 
           <input id="lecname<?php echo $row["SUBJECT_ID"] ?>"  name="lecname" type="hidden" style="border:0px" value="<?php echo $row['FIRSTNAME']   . ' ' . $row['LASTNAME']  ?>" readonly>
           <input id="lecid<?php echo $row["SUBJECT_ID"] ?>"  name="lecid" type="hidden" style="border:0px" value="<?php echo $row['USER_ID'] ?>" readonly>
-          <input id="semestername<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade'] ?>" readonly>
-          <input id="semesterid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade_id'] ?>" readonly>
+          <input id="semestername<?php echo $row["SUBJECT_ID"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade'] ?>" readonly>
+          <input id="semesterid<?php echo $row["SUBJECT_ID"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade_id'] ?>" readonly>
 
-          <input id="syname<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['study_year'] ?>" readonly>
-          <input id="syid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['student_study_year_id'] ?>" readonly>
+          <input id="syname<?php echo $row["SUBJECT_ID"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['study_year'] ?>" readonly>
+          <input id="syid<?php echo $row["SUBJECT_ID"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['student_study_year_id'] ?>" readonly>
 
         <td><input id="des<?php echo $row["SUBJECT_ID"] ?>" name="desc" type="text" style="border:0px;width:100%" value="<?php echo $row['DESCRIPTION'] ?>" readonly></td>
         <td><center><a onclick="update_subject(<?php echo $row["SUBJECT_ID"] ?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
@@ -89,7 +89,7 @@
       $("#head").html("Update Subject");
       $("#btn_add").html("Update");
       $("#semester").val(semestervalue).text(semestertext);
-      $("#syr").val(syvalue).text(syname);
+      $("#syr").val(syvalue).text("Year "+syname);
       //$('#para1').append($('<option>').val(paravalue).text(paratext))
 
 

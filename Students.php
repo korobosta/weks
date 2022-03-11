@@ -180,7 +180,7 @@ success:function(data)
   <label class="col-xs-2 control-label" for="tn">Year of Completing High School</label> 
   <br>
   <div class="col-xs-6">
-   <select id="tn" name="" type="hs_year_completed" style="width:100px;"
+   <select id="tn" name="hs_year_completed" style="width:100px;"
    class="form-control input-xs" required="">
    <?php 
    $current_year=date('Y');
