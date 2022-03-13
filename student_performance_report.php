@@ -50,7 +50,7 @@ $student_course=$student['PROGRAM'];
 		</td>
 		<td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
 		<p><b>WEKS COLLEGE</b></p>
-		<p style="padding:5px; font-weight: bold; color:green" >Performance for <?php echo $_SESSION['fname']. ' '.$_SESSION['lname']  ?></p>
+		<p style="padding:5px; font-weight: bold; color:green" >Performance for <strong style="font-size: 20px;"><?php echo $_SESSION['fname']. ' '.$_SESSION['lname']  ?></strong></p>
 		<p style="padding:10px; font-weight: bold; color:teal"><?php echo $student_course  ?></p>	
 		</td>
 		<td style="width:20%;">
@@ -67,7 +67,32 @@ $student_course=$student['PROGRAM'];
 			} ?>
 		</td>
 	</tr>
+
+  
 </table>
+<?php 
+  $sy=$conn->query("SELECT  DISTINCT registered_units.school_year from registered_units WHERE registered_units.student='$student_id'");
+
+
+  while($row7=mysqli_fetch_array($sy)){
+    $school_year_f=$row7['school_year'];
+    $row5=$conn->query("SELECT school_year FROM school_year WHERE SY_ID='$school_year_f'");
+    $school_year=mysqli_fetch_assoc($row5);
+    $school_year=$school_year['school_year'];
+  ?>
+  <h3 style="text-align:center;"><?php echo $school_year ?></h3>
+  <?php
+  $sm=$conn->query("SELECT DISTINCT semester from registered_units  WHERE student='$student_id' AND school_year='$school_year_f'");
+
+  
+  while($row6=mysqli_fetch_array($sm)){
+    $semester_f=$row6['semester'];
+    $row6=$conn->query("SELECT grade FROM grade WHERE grade_id='$semester_f'");
+    $semesters=mysqli_fetch_assoc($row6);
+    $semester=$semesters['grade'];
+
+  ?>
+  <h3 style="text-align:center;">Semester <?php echo $semester ?></h3>
   <table id="students" class="table table-bordered" >
     <thead>
       <tr id="heads">
@@ -76,28 +101,18 @@ $student_course=$student['PROGRAM'];
         <td style="width:10%">Academic Year</th>
         <td style="width:10%">Semester</th>
         <td style="width:10%">Study Year</th>
-
-
       </tr>
     </thead>
     <tbody>
     <?php
-    include 'db.php';
     
-    $sql=  mysqli_query($conn, "SELECT * FROM registered_units left join grade on registered_units.semester=grade.grade_id JOIN school_year ON registered_units.school_year=school_year.SY_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN students ON registered_units.student=students.STUDENT_ID join user on students.USER=user.USER_ID WHERE registered_units.student = '$student_id'");
-    if(!$sql){
-      echo $conn->error;
-    }
+    $sql=  mysqli_query($conn, "SELECT * FROM registered_units left join grade on registered_units.semester=grade.grade_id JOIN school_year ON registered_units.school_year=school_year.SY_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN students ON registered_units.student=students.STUDENT_ID join user on students.USER=user.USER_ID WHERE registered_units.student = '$student_id' AND registered_units.semester='$semester_f' AND registered_units.school_year='$school_year_f'");
+    
     while($row = mysqli_fetch_assoc($sql)) {
-       // $sql2=  mysqli_query($conn, "SELECT * FROM student_info left join program on student_info.PROGRAM=program.PROGRAM_ID WHERE STUDENT_ID = '".$row['STUDENT_ID']."' ");
-       //   while($row2 = mysqli_fetch_assoc($sql2)) {
 
 
     ?>
       <tr>
-
-        <!-- <td><?php echo $row2['LASTNAME'] . ' ' . $row2['FIRSTNAME']. ' ' . $row2['MIDDLENAME'] ?></td>
-        <td><?php echo $row2['PROGRAM'] ?></td> -->
         <td><?php echo $row['SUBJECT'] ?></td>
         <td><?php echo $row['marks'] ?></td>
         <td><?php echo $row['school_year'] ?></td>
@@ -105,12 +120,17 @@ $student_course=$student['PROGRAM'];
         <td><?php echo $row['study_year'] ?></td>
       </tr>
       <?php
-    // }
-    } mysqli_close($conn);
-      ?>
-      
+    }
+    ?>
+    
     </tbody>
   </table>
+  <?php
+  }
+}
+      ?>
+      
+    
 </div>
 </div>
 </div>         

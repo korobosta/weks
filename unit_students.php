@@ -1,43 +1,21 @@
-<?php if($_SESSION['user_type'] == "LECTURER"){ ?>
-<h3>My Assigned Units</h3>
+<?php
+include 'db.php';
+$unit_id=$_GET['id'];
+$unit=$conn->query("SELECT * FROM subjects WHERE SUBJECT_ID='$unit_id'");
+$unit=mysqli_fetch_assoc($unit);
 
+?>
 
-    <table id="students" class="table table-hover table-bordered">
-      <thead>
-      <tr>
-        <th>Unit Name</th>
-        <th></th>
-        
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-    include 'db.php';
-    $user_id=$_SESSION['ID'];
-    $query=$conn->query("SELECT * from subjects WHERE LECTURER='$user_id'");
-    while($row=mysqli_fetch_array($query)){
-      ?>
-      <tr>
-        <td><?php echo $row['SUBJECT'] ?></td>
-        <td> <a href="rms.php?page=unit_students&id=<?php echo $row['SUBJECT_ID'] ?>">View Students</a> </td>
-      </tr>
-      <?php 
-    }
-    ?>
-  </tbody>
-      
-    </table>
-  <?php } ?>
           
-          <h3 class="page-header"> Registerd Units <small>section</small></h3> 
+          <h3 class="page-header"> Unit|Students  <small>section</small></h3> 
       <?php
-            include 'process_units_registration.php';
+            include 'process_unit_students_registration.php';
             
                 ?> 
        <div class="col-md-8 " id="s_page">
         <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"> Registerd Units</h3>
+          <h3 class="panel-title"> Students under <?php echo  $unit['SUBJECT'] ?></h3>
         </div> 
         <div class="panel-body">  
 
@@ -72,8 +50,8 @@
 
       if($_SESSION['user_type'] == "LECTURER"){
         $user_id=$_SESSION['ID'];
-        $more_sql=" WHERE subjects.LECTURER=$user_id";
-        $more_units_sql=" WHERE subjects.LECTURER='$user_id' ";
+        $more_sql=" WHERE subjects.LECTURER=$user_id AND unit='$unit_id' ";
+        $more_units_sql=" WHERE subjects.LECTURER='$user_id'";
       }
 
               
@@ -138,7 +116,7 @@
 
       <div class="col-md-4" id="">
         
-            <div style="background-color:rgba(208, 212, 209, 0.23);padding-left:30px">
+            <div class="container frm-new">
       <div class="row main">
         <div class="main-login main-center">
         <h3 id="head">Register Unit</h3>
@@ -151,16 +129,10 @@
               <div class="cols-sm-4">
                 <div class="input-group">
                   <select name="unit" class="form-control" id="unit1">
-                  <option id="unit"></option>
-                  <?php
-                  include 'db.php';
-                  $sql = mysqli_query($conn,"SELECT * from subjects $more_units_sql ORDER BY SUBJECT_ID");
-                  while($row=mysqli_fetch_assoc($sql)){
-                   ?>
-                  <option value="<?php echo $row['SUBJECT_ID'] ?>">
-                  <?php echo $row['SUBJECT'] ?>
+                  
+                  <option value="<?php echo $unit['SUBJECT_ID'] ?>">
+                  <?php echo $unit['SUBJECT'] ?>
                   </option>
-                  <?php } mysqli_close($conn); ?>
                   </select>
                 </div>
               </div>

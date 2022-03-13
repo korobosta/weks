@@ -44,18 +44,18 @@
 
 	if ($sql=mysqli_query($conn, "INSERT into payments (student, semester, amount,school_year,study_year,payment_date,payment_method) 
 		VALUES ( '$student', '$semester', '$amount','$school_year','$study_year','$payment_date','$payment_method')")){
+		$payment_id=mysqli_insert_id($conn);
 		mysqli_query($conn, "INSERT into history_log (transaction,user_id,date_added) 
 		VALUES ('recorded fee for student $student','$user',NOW() )");
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Fee Record added Successfully </h4></center></div>";
 	echo "<script>
 	document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
-	setTimeout(function(){	window.location.href='rms.php?page=record_payment';  }, 2000);</script>";
+	setTimeout(function(){	window.location.href='print.php?id=".$payment_id."';  }, 2000);</script>";
 	} else {
-		echo $conn->error;
-		// echo "<script>
-		// alert('Failed to add record!" .$sql."');
-		// window.location.href='rms.php?page=record_payment';
-		// </script>";
+		echo "<script>
+		alert('Failed to add record!" .$sql."');
+		window.location.href='rms.php?page=record_payment';
+		</script>";
 		unset($_POST);
  
 	}

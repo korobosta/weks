@@ -229,6 +229,9 @@ function printContent(el){
                    Amount: <?php echo $row['amount'];?>
                 </td>
             </tr>
+            <tr>
+                <td>Produced By <?php echo $_SESSION['fname'] ?></td>
+            </tr>
         </table>
     </div>
 
@@ -237,7 +240,7 @@ function printContent(el){
 </form>
 <div class="button">
     <button onclick="printContent('div1')">Print</button>
-    <a href="payments.php">Done</a>
+    <a href="rms.php?page=record_payment">Done</a>
 </div>
 
 </body>

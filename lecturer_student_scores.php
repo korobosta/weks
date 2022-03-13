@@ -19,7 +19,7 @@ $user_id=$_SESSION['ID'];
 		}
          </style>
 
-          <h1 class="page-header">My Student Performance      <button type="text" class="btn btn-info" onclick="printContent('stud')" >
+          <h1 class="page-header">My Student Unit Performance      <button type="text" class="btn btn-info" onclick="printContent('stud')" >
     <i class="glyphicon glyphicon-print"></i>PRINT</button>
 </h1>
 
@@ -47,6 +47,15 @@ $user_id=$_SESSION['ID'];
 		</td>
 	</tr>
 </table>
+<?php
+include 'db.php';
+$user_id=$_SESSION['ID'];
+$query=$conn->query("SELECT * from subjects WHERE LECTURER='$user_id'");
+while($row1=mysqli_fetch_array($query)){
+
+
+?>
+<h3> <?php echo $row1['SUBJECT'] ?></h3>
   <table id="students" class="table table-bordered" >
     <thead>
       <tr id="heads">
@@ -63,8 +72,9 @@ $user_id=$_SESSION['ID'];
     <tbody>
     <?php
     include 'db.php';
+    $subject_id=$row1['SUBJECT_ID'];
     
-    $sql=  mysqli_query($conn, "SELECT * FROM registered_units left join grade on registered_units.semester=grade.grade_id JOIN school_year ON registered_units.school_year=school_year.SY_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN students ON registered_units.student=students.STUDENT_ID join user on students.USER=user.USER_ID WHERE subjects.lecturer = '$user_id'");
+    $sql=  mysqli_query($conn, "SELECT * FROM registered_units left join grade on registered_units.semester=grade.grade_id JOIN school_year ON registered_units.school_year=school_year.SY_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN students ON registered_units.student=students.STUDENT_ID join user on students.USER=user.USER_ID WHERE subjects.lecturer = '$user_id' AND registered_units.unit='$subject_id'");
     if(!$sql){
       echo $conn->error;
     }
@@ -90,6 +100,7 @@ $user_id=$_SESSION['ID'];
       
     </tbody>
   </table>
+<?php } ?>
 </div>
 </div>
 </div>         

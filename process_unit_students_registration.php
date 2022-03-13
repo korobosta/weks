@@ -36,14 +36,20 @@
 		$check_repetition=$conn->query("SELECT * from registered_units WHERE unit='$unit' AND student='$student'");
 	if(mysqli_num_rows($check_repetition)>0){
 		echo "<b style='color:red'>Unit already registered for student</b> ";
+		echo "<script>
+	document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
+	setTimeout(function(){	window.location.href='rms.php?page=unit_students&id=".$unit."';  }, 1000);</script>";
 
 	}
 
 	else{
-		$rep_qury="SELECT id FROM payments WHERE student='$student' AND semester='$current_semester' AND study_year='$current_study_year' AND school_year='$current_school_year'";
-		$fee_payment=$conn->query($rep_qury);
+
+		$fee_payment=$conn->query("SELECT id FROM payments WHERE student='$student' AND semester='$current_semester' AND study_year='$current_study_year' AND school_year='$current_school_year'");
 		if(mysqli_num_rows($fee_payment) < 1){
 			echo "<b style='color:red'>Fee payment not done</b> ";
+			echo "<script>
+	document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
+	setTimeout(function(){	window.location.href='rms.php?page=unit_students&id=".$unit."';  }, 1000);</script>";
 
 		}
 		else{
@@ -59,11 +65,11 @@
 	echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Unit Registered Successfully </h4></center></div>";
 	echo "<script>
 	document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
-	setTimeout(function(){	window.location.href='rms.php?page=registered_units';  }, 2000);</script>";
+	setTimeout(function(){	window.location.href='rms.php?page=unit_students&id=".$unit."';  }, 2000);</script>";
 	} else {
 		echo "<script>
 		alert('Failed to register unit!" .$sql."');
-		window.location.href='rms.php?page=registered_units';
+		window.location.href='rms.php?page=unit_students&id=".$unit."';
 		</script>";
 		unset($_POST);
  
@@ -89,7 +95,7 @@
 			echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Record Successfully Updated.</h4></center></div>";
 			echo "<script>
 			document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
-			setTimeout(function(){	window.location.href='rms.php?page=registered_units';  }, 2000);</script>";
+			setTimeout(function(){	window.location.href='rms.php?page=unit_students&id=".$unit."';  }, 2000);</script>";
 
 		} else {
     echo "Error updating record: " . mysqli_error($conn);
