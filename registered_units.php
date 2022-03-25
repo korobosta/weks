@@ -79,7 +79,7 @@
               
 
     
-    $sql=  mysqli_query($conn, "SELECT registered_units.id,registered_units.marks,subjects.SUBJECT_ID,subjects.SUBJECT,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME FROM registered_units JOIN students ON registered_units.student=students.STUDENT_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN user ON students.USER=user.USER_ID $more_sql Order by registered_units.id ASC");
+    $sql=  mysqli_query($conn, "SELECT registered_units.main_exam_marks,registered_units.cat_marks,registered_units.id,registered_units.marks,subjects.SUBJECT_ID,subjects.SUBJECT,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME FROM registered_units JOIN students ON registered_units.student=students.STUDENT_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN user ON students.USER=user.USER_ID $more_sql Order by registered_units.id ASC");
     if(!$sql){
       echo $conn->error;
     }
@@ -93,7 +93,15 @@
          <input type="hidden" id="id<?php echo $row["id"] ?>" name="id" value="<?php echo $row['id'] ?>">
         <td><input id="studentname<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['FIRSTNAME'].' '.$row['LASTNAME'] ?>" readonly></td>
         <td><input id="unitname<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['SUBJECT'] ?>" readonly></td>
-        <td><input id="marks<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['marks'] ?>" readonly></td>
+        <td>
+          <th>Cat<br><?php echo $row['cat_marks'] ?></th>
+          <th>Main<br><?php echo $row['main_exam_marks'] ?></th>
+          <th>Total<br><?php echo $row['marks'] ?></th>
+        
+          <input type="hidden" id="cat_marks<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['cat_marks'] ?>" readonly >
+          <input type="hidden" id="main_exam_marks<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['main_exam_marks'] ?>" readonly>
+          <input type="hidden" id="marks<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['marks'] ?>" readonly >
+        </td>
         <?php if($_SESSION['user_type'] != "STUDENT"){ ?>
         <td><center><a onclick="update_data(<?php echo $row["id"]?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td>
         <?php } ?>
@@ -122,13 +130,15 @@
       studenttext = $("#studentname"+i).val();
       studentvalue = $("#studentid"+i).val();
 
-      marks = $("#marks"+i).val();
+      cat_marks = $("#cat_marks"+i).val();
+      main_exam_marks = $("#main_exam_marks"+i).val();
 
 
       $("#id").val($("#id"+i).val());
       $("#unit").val(unitvalue).text(unittext);
       $("#student").val(studentvalue).text(studenttext);
-      $("#marks1").val(marks);
+      $("#cat_marks1").val(cat_marks);
+      $("#main_exam_marks1").val(main_exam_marks);
       $("#head").html("Update Record");
       $("#btn_add").html("Update");
 
@@ -193,11 +203,19 @@
           <?php } ?>
 
           <?php if($_SESSION['user_type'] == "LECTURER") { ?>
-          <div class="form-group" id=marks>
-              <label for="sub" class="cols-sm-2 control-label">Marks</label>
+          <div class="form-group" id='cat_marks'>
+              <label for="cat_marks" class="cols-sm-2 control-label">Cat Marks</label>
               <div class="cols-sm-4">
                 <div class="input-group">
-                  <input class="form-control" type="number" name="marks" min="1" id="marks1">
+                  <input class="form-control" type="number" name="cat_marks" min="0" max='30' id="cat_marks1">
+                </div>
+              </div>
+            </div>
+            <div class="form-group" id='main_exam_marks'>
+              <label for="main_exam_marks" class="cols-sm-2 control-label">Main Exam Marks</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <input class="form-control" type="number" name="main_exam_marks" min="0" max='70' id="main_exam_marks1">
                 </div>
               </div>
             </div>

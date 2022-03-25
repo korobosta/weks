@@ -1,5 +1,6 @@
 <?php session_start(); 
 $user_id=$_SESSION['ID'];
+include 'grade_calculator.php';
 
 ?>
      <style type="text/css">
@@ -61,7 +62,7 @@ while($row1=mysqli_fetch_array($query)){
       <tr id="heads">
         <td style="width:20%">Student</th>
         <td style="width:20%">Unit</th>
-        <td style="width:10%">Marks</th>
+        <td style="width:10%">Marks/Grade</th>
         <td style="width:10%">Academic Year</th>
         <td style="width:10%">Semester</th>
         <td style="width:10%">Study Year</th>
@@ -88,7 +89,7 @@ while($row1=mysqli_fetch_array($query)){
 
         <td><?php echo $row['LASTNAME'] . ' ' . $row['FIRSTNAME']. ' ' . $row['MIDDLENAME'] ?></td>
         <td><?php echo $row['SUBJECT'] ?></td>
-        <td><?php echo $row['marks'] ?></td>
+        <td><?php echo $row['marks'] ?>  <?php echo calculate_grade($row['marks']);  ?></td>
         <td><?php echo $row['school_year'] ?></td>
         <td><?php echo $row['grade'] ?></td>
         <td><?php echo $row['study_year'] ?></td>

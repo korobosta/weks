@@ -7,6 +7,7 @@ if(!$student){
 $student=mysqli_fetch_assoc($student);
 $student_id=$student['STUDENT_ID'];
 $student_course=$student['PROGRAM'];
+include 'grade_calculator.php';
 
 ?>
      <style type="text/css">
@@ -97,7 +98,7 @@ $student_course=$student['PROGRAM'];
     <thead>
       <tr id="heads">
         <td style="width:20%">Unit</th>
-        <td style="width:10%">Marks</th>
+        <td style="width:10%">Marks/Grade</th>
         <td style="width:10%">Academic Year</th>
         <td style="width:10%">Semester</th>
         <td style="width:10%">Study Year</th>
@@ -114,7 +115,7 @@ $student_course=$student['PROGRAM'];
     ?>
       <tr>
         <td><?php echo $row['SUBJECT'] ?></td>
-        <td><?php echo $row['marks'] ?></td>
+        <td><?php echo $row['marks'] ?> <?php echo calculate_grade($row['marks']);  ?></td>
         <td><?php echo $row['school_year'] ?></td>
         <td><?php echo $row['grade'] ?></td>
         <td><?php echo $row['study_year'] ?></td>
