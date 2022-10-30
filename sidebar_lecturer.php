@@ -25,9 +25,15 @@ $school_year=$s['school_year'];
 <li>
     <a href="javascript:void(0)" data-toggle="collapse" data-target="#reportsCollapse"><i class="fa fa-fw fa-file"></i> Reports       <i class="fa fa-fw fa-caret-down"></i></a>
     <ul id="reportsCollapse" class="collapse">
-        <li>
+        <!-- <li>
             <a href="rms.php?page=lecturer_student_scores"><i class="fa fa-fw fa-files-o"></i>Scores</a>
+        </li> -->
+        <li>
+            <a href="rms.php?page=units_report"><i class="fa fa-fw fa-files-o"></i> Units</a>
         </li>
+        <!-- <li>
+            <a href="rms.php?page=unit_grades"><i class="fa fa-fw fa-files-o"></i>Unit Grades</a>
+        </li> -->
     </ul>
 </li>
 </ul>

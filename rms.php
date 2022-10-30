@@ -34,7 +34,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div  class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -45,7 +45,7 @@
                   <!-- <img src="" style="height:48px;width:50px;align:center" alt=""> -->
                 </div>
                                 
-                <a class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; WEKS COLLEGE</b></a>
+                <a style="margin-top: -20px" class="navbar-brand" href=""><b>&nbsp;&nbsp;&nbsp; <img src="asset/images/logo.png"></b></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -117,7 +117,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 
 $page = $_GET['page'];
-$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs','configure_fee','semester_units','registered_units','student_performance_report','student_payment_report','finance_fee_payment_report','record_payment','lecturer_student_scores','students_report','courses_report','units_report','student_performance_report_admin','unit_students');
+$pages = array('home', 'Students', 'subjects','student_p','records','record','addrecord','report','program','statistical','form137','list_report','student_report','users','school_year','grade','advisers','database','candidates','candidates_list', 'candidates_report','logs','configure_fee','semester_units','registered_units','student_performance_report','student_payment_report','finance_fee_payment_report','record_payment','lecturer_student_scores','students_report','courses_report','units_report','student_performance_report_admin','unit_students','unit_performance','unit_grades','single_unit_performance','verify_transcript','fee_balances');
 if (!empty($page)) {
     if(in_array($page,$pages)) {
         $page .= '.php';

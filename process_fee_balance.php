@@ -56,7 +56,7 @@
 	} else {
 		echo "<script>
 		alert('Failed to add record!" .$sql."');
-		window.location.href='rms.php?page=record_payment';
+		window.location.href='rms.php?page=fee_balances';
 		</script>";
 		unset($_POST);
  
@@ -78,7 +78,7 @@
 			echo "<div class='erlert-success col-sm-12 col-sm-offset-2' style='width:300px;z-index:1000;position:fixed;left:500'><center><h4>Record Successfully Updated.</h4></center></div>";
 			echo "<script>
 			document.getElementsByTagName('body')[0].setAttribute('style', 'filter:blur()');
-			setTimeout(function(){	window.location.href='rms.php?page=record_payment';  }, 2000);</script>";
+			setTimeout(function(){	window.location.href='rms.php?page=fee_balances';  }, 2000);</script>";
 
 		} else {
     echo "Error updating record: " . mysqli_error($conn);

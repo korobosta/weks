@@ -34,6 +34,7 @@ include 'grade_calculator.php';
 
 		<br> <br>
        <div class="col-md-8" id="stud" style="padding:50px">   
+        <img style="margin-left: 40%;" src="asset/images/logo.png"><br><br>
        <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 
        <table>
@@ -41,7 +42,7 @@ include 'grade_calculator.php';
 		<td style="width:20%;">
 		
 		</td>
-		<td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
+		<td style="width:400px;font-size:12px;line-height:1mm;text-align:center" >
 		<p><b>WEKS COLLEGE</b></p>
 		<p style="padding:5px; font-weight: bold; color:green" >Performance for Students</p>
 		</td>

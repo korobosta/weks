@@ -15,7 +15,7 @@ $unit=mysqli_fetch_assoc($unit);
        <div class="col-md-8 " id="s_page">
         <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"> Students under <?php echo  $unit['SUBJECT'] ?></h3>
+          <h3 class="panel-title"> Students under <?php echo  !empty($unit['SUBJECT']) ? $unit['SUBJECT'] : ''  ?></h3>
         </div> 
         <div class="panel-body">  
 

@@ -18,6 +18,7 @@
         <th >Student</th>
         <th >Semester</th>
          <th >Amount</th>
+         <th>Paid By</th>
         <th ></th>
       </tr>
     </thead>
@@ -26,7 +27,7 @@
     include 'db.php';
 
     
-    $sql=  mysqli_query($conn, "SELECT payments.id,payments.amount,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME,grade.grade_id,grade.grade, school_year.SY_ID,school_year.school_year FROM payments JOIN students on payments.student=students.STUDENT_ID JOIN user on students.USER=user.USER_ID JOIN grade ON payments.semester=grade.grade_id JOIN school_year ON payments.school_year=school_year.SY_ID Order by payments.id ASC ");
+    $sql=  mysqli_query($conn, "SELECT payments.paid_by,payments.id,payments.amount,students.STUDENT_ID,user.FIRSTNAME,user.LASTNAME,grade.grade_id,grade.grade, school_year.SY_ID,school_year.school_year FROM payments JOIN students on payments.student=students.STUDENT_ID JOIN user on students.USER=user.USER_ID JOIN grade ON payments.semester=grade.grade_id JOIN school_year ON payments.school_year=school_year.SY_ID Order by payments.id ASC ");
     if(!$sql){
       echo $conn->error;
     }
@@ -39,14 +40,17 @@
       <tr>
          <input type="hidden" id="id<?php echo $row["id"] ?>" name="id" value="<?php echo $row['id'] ?>">
         <td><input id="studentname<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['FIRSTNAME'] .' '.$row['LASTNAME'] ?>" readonly></td>
-        <td><input id="semestername<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['grade'] ?>" readonly></td>
+        <td><input style="width:30px" id="semestername<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['grade'] ?>" readonly></td>
         <td><input id="amount<?php echo $row["id"] ?>"  name="" type="number" style="border:0px" value="<?php echo $row['amount'] ?>" readonly>
+        <td>
+          <input id="paid_by<?php echo $row["id"] ?>"  name="" type="text" style="border:0px" value="<?php echo $row['paid_by'] ?>" readonly>
+        </td>
 
         </td>
         <!-- <td><center><a onclick="update_fee(<?php echo $row["id"]?>)" class="btn btn-info" ><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a></center></td> -->
         <input id="studentid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['STUDENT_ID'] ?>" readonly>
         <input id="semesterid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['grade_id'] ?>" readonly>
-        <input id="syid<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['SY_ID'] ?>" readonly>
+        <input id="syname<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['school_year'] ?>" readonly>
         <input id="syname<?php echo $row["id"] ?>"  name="" type="hidden" style="border:0px" value="<?php echo $row['school_year'] ?>" readonly>
         <td><a href="print.php?id=<?php echo $row['id'] ?>">Print</a></td>
       </tr>
@@ -77,6 +81,7 @@
 
       $("#id").val($("#id"+i).val());
       $("#amt").val($("#amount"+i).val());
+      $("#paid_by").val($("#paid_by"+i).val());
       $("#student").val(studentvalue).text(studenttext);
       $("#semester").val(semestervalue).text(semestertext);
       $("#school_year").val(syid).text(syname);
@@ -195,6 +200,15 @@
             </div>
 
             <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">Paid By</label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <input class="form-control" type="text" min="1" name="paid_by" id="paid_by">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="sub" class="cols-sm-2 control-label">Payment Method</label>
               <div class="cols-sm-4">
                 <div class="input-group">
@@ -202,6 +216,15 @@
                     <option>Bank</option>
                     <option>Mpesa</option>
                   </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sub" class="cols-sm-2 control-label">Date of Payment </label>
+              <div class="cols-sm-4">
+                <div class="input-group">
+                  <input class="form-control" type="date" name="date_of_payment" max="<?php echo date('Y-m-d') ?>" id="date_of_payment">
                 </div>
               </div>
             </div>

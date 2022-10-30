@@ -1,4 +1,24 @@
 <?php session_start(); 
+$user_type=$_SESSION['user_type'];
+include 'db.php';
+$courses=$conn->query("SELECT PROGRAM_ID,PROGRAM from program");
+$lecs=$conn->query("SELECT * from user where user.USER_TYPE='LECTURER'");
+
+$sub_query=" WHERE subjects.SUBJECT !='' ";
+
+if(isset($_POST['subject_id'])){
+  $subject_id=$_POST['subject_id'];
+  if($subject_id != ''){
+    $sub_query=$sub_query.' AND subjects.FOR='.$subject_id;
+  }
+}
+
+if(isset($_POST['lec_id'])){
+  $lec_id=$_POST['lec_id'];
+  if($lec_id != ''){
+    $sub_query=$sub_query.' AND subjects.LECTURER='.$lec_id;
+  }
+}
 
 
 ?>
@@ -19,9 +39,52 @@
 		}
          </style>
 
-          <h1 class="page-header">Courses Report      <button type="text" class="btn btn-info" onclick="printContent('stud')" >
+          <h1 class="page-header">Units Report      <button type="text" class="btn btn-info" onclick="printContent('stud')" >
     <i class="glyphicon glyphicon-print"></i>PRINT</button>
 </h1>
+
+<div class="col-md-4" id="">
+  <div style="background-color:rgba(208, 212, 209, 0.23);padding-left:30px">
+    <div class="row main">
+      <div class="main-login main-center">
+        <h3 id="head">Filter</h3>
+        <form class="" method="post">
+          <div class="form-group">
+            <label for="sub" class="cols-sm-2 control-label">Course</label>
+            <div class="cols-sm-4">
+              <div class="input-group">
+                <select name="subject_id" class="form-control">
+                  <option value="">Select Course</option>
+                  <?php while($course=mysqli_fetch_array($courses)) { ?>
+                    <option value="<?php echo $course['PROGRAM_ID'] ?>"><?php echo $course['PROGRAM'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+          <?php if($user_type !="LECTURER" ){ ?>
+          <div class="form-group">
+            <label for="sub" class="cols-sm-2 control-label">Lecturer</label>
+            <div class="cols-sm-4">
+              <div class="input-group">
+                <select name="lec_id" class="form-control">
+                  <option value="">Select Lecturer</option>
+                  <?php while($lec=mysqli_fetch_array($lecs)) { ?>
+                    <option value="<?php echo $lec['USER_ID'] ?>"><?php echo $lec['FIRSTNAME']. ' ' .$lec['MIDDLE_NAME']. ' '.$lec['LASTNAME'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+          <div class="form-group ">
+            <button type="submit" name="verify" class="btn btn-info" id="btn_add">Filter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
             
           <div class="container">
@@ -34,6 +97,7 @@
 
 		<br> <br>
        <div class="col-md-8" id="stud" style="padding:50px">   
+        <img style="margin-left: 40%;" src="asset/images/logo.png"><br><br>
        <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 
        <table>
@@ -41,9 +105,9 @@
 		<td style="width:20%;">
 		
 		</td>
-		<td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
+		<td style="width:400px;font-size:12px;line-height:1mm;text-align:center" >
 		<p><b>WEKS COLLEGE</b></p>
-		<p style="padding:5px; font-weight: bold; color:green" >Courses Report</p>
+		<p style="padding:5px; font-weight: bold; color:green" >Units Report</p>
 		</td>
 	</tr>
 </table>
@@ -61,8 +125,15 @@
     <tbody>
     <?php
     include 'db.php';
+
     
-    $sql=  mysqli_query($conn, "SELECT * FROM subjects JOIN program on program.PROGRAM_ID=subjects.FOR join user on subjects.LECTURER=user.USER_ID");
+    $user_id=$_SESSION['ID'];
+
+    if($user_type=="LECTURER"){
+      $sub_query=" AND LECTURER=$user_id";
+    }
+    
+    $sql=  mysqli_query($conn, "SELECT * FROM subjects JOIN program on program.PROGRAM_ID=subjects.FOR join user on subjects.LECTURER=user.USER_ID $sub_query");
     if(!$sql){
       echo $conn->error;
     }
@@ -78,6 +149,7 @@
         <td><?php echo $row['PROGRAM'] ?></td>
         <td><?php echo $row['DESCRIPTION'] ?></td>
         <td><?php echo $row['FIRSTNAME'] . ' '. $row['LASTNAME'] ?></td>
+        <td><a href="rms.php?page=single_unit_performance&id=<?php echo $row['SUBJECT_ID'] ?>">View Performance</a></td>
       <?php
     // }
     } mysqli_close($conn);

@@ -20,7 +20,7 @@ include 'grade_calculator.php';
 		}
          </style>
 
-          <h1 class="page-header">My Student Unit Performance      <button type="text" class="btn btn-info" onclick="printContent('stud')" >
+          <h1 class="page-header">Unit Performance      <button type="text" class="btn btn-info" onclick="printContent('stud')" >
     <i class="glyphicon glyphicon-print"></i>PRINT</button>
 </h1>
 
@@ -32,13 +32,11 @@ include 'grade_calculator.php';
         <div class="input-group">
     </div>
     </div>
-	
 
 		<br> <br>
-       <div class="col-md-8" id="stud" style="padding:50px">  
-       <img style="margin-left: 40%;" src="asset/images/logo.png">	   
+       <div class="col-md-8" id="stud" style="padding:50px">   
+        <img style="margin-left: 40%;" src="asset/images/logo.png"><br><br>
        <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
-	  
 
        <table>
 	<tr>
@@ -54,7 +52,7 @@ include 'grade_calculator.php';
 <?php
 include 'db.php';
 $user_id=$_SESSION['ID'];
-$query=$conn->query("SELECT * from subjects WHERE LECTURER='$user_id'");
+$query=$conn->query("SELECT * from subjects");
 while($row1=mysqli_fetch_array($query)){
 
 
@@ -78,7 +76,7 @@ while($row1=mysqli_fetch_array($query)){
     include 'db.php';
     $subject_id=$row1['SUBJECT_ID'];
     
-    $sql=  mysqli_query($conn, "SELECT * FROM registered_units left join grade on registered_units.semester=grade.grade_id JOIN school_year ON registered_units.school_year=school_year.SY_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN students ON registered_units.student=students.STUDENT_ID join user on students.USER=user.USER_ID WHERE subjects.lecturer = '$user_id' AND registered_units.unit='$subject_id'");
+    $sql=  mysqli_query($conn, "SELECT * FROM registered_units left join grade on registered_units.semester=grade.grade_id JOIN school_year ON registered_units.school_year=school_year.SY_ID JOIN subjects ON registered_units.unit=subjects.SUBJECT_ID JOIN students ON registered_units.student=students.STUDENT_ID join user on students.USER=user.USER_ID WHERE registered_units.unit='$subject_id'");
     if(!$sql){
       echo $conn->error;
     }

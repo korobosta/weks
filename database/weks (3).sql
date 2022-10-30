@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2022 at 10:46 AM
+-- Generation Time: May 04, 2022 at 06:54 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -138,7 +138,10 @@ CREATE TABLE `fee` (
 INSERT INTO `fee` (`id`, `course`, `semester`, `amount`, `school_year`, `study_year`) VALUES
 (9, 2, 1, 23400, 5, 1),
 (10, 2, 1, 67900, 4, 1),
-(11, 2, 1, 23000, 1, 1);
+(11, 2, 1, 23000, 1, 1),
+(12, 6, 1, 30000, 5, 1),
+(13, 2, 2, 46000, 5, 2),
+(14, 4, 1, 30000, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -157,10 +160,10 @@ CREATE TABLE `grade` (
 --
 
 INSERT INTO `grade` (`grade_id`, `grade`, `status`) VALUES
-(1, '1', 'No'),
+(1, '1', 'Yes'),
 (2, '2', 'No'),
 (3, '3', 'No'),
-(4, '4', 'Yes');
+(4, '4', 'No');
 
 -- --------------------------------------------------------
 
@@ -476,7 +479,155 @@ INSERT INTO `history_log` (`log_id`, `transaction`, `user_id`, `date_added`) VAL
 (279, 'logged out', 16, '2022-02-23 11:18:02'),
 (280, 'logged in', 1, '2022-02-23 11:18:13'),
 (281, 'logged out', 19, '2022-02-23 11:56:11'),
-(282, 'logged in', 1, '2022-02-23 11:56:25');
+(282, 'logged in', 1, '2022-02-23 11:56:25'),
+(283, 'logged in', 1, '2022-02-24 18:10:41'),
+(284, 'logged out', 1, '2022-02-24 18:10:58'),
+(285, 'logged in', 1, '2022-02-24 18:11:09'),
+(286, 'added   as new student', 1, '2022-02-24 18:13:52'),
+(287, 'logged out', 1, '2022-02-24 18:17:39'),
+(288, 'logged in', 16, '2022-02-24 18:17:55'),
+(289, 'logged out', 16, '2022-02-24 18:20:17'),
+(290, 'logged in', 16, '2022-02-24 18:21:41'),
+(291, 'logged out', 16, '2022-02-24 18:22:30'),
+(292, 'logged in', 23, '2022-02-24 18:22:41'),
+(293, 'recorded fee for student 14', 23, '2022-02-24 18:23:01'),
+(294, 'logged out', 23, '2022-02-24 18:23:10'),
+(295, 'logged in', 16, '2022-02-24 18:23:20'),
+(296, 'logged out', 16, '2022-02-24 18:23:58'),
+(297, 'logged in', 1, '2022-02-24 18:24:10'),
+(298, 'updated 4 in the subject list', 1, '2022-02-24 18:24:32'),
+(299, 'logged out', 1, '2022-02-24 18:24:51'),
+(300, 'logged in', 16, '2022-02-24 18:25:01'),
+(301, 'registered unit for student ', 16, '2022-02-24 18:26:22'),
+(302, 'logged out', 16, '2022-02-24 18:27:21'),
+(303, 'logged in', 19, '2022-02-24 18:27:31'),
+(304, 'logged out', 19, '2022-02-24 18:27:57'),
+(305, 'logged in', 1, '2022-02-24 18:28:15'),
+(306, 'updated 4 in the subject list', 1, '2022-02-24 18:28:33'),
+(307, 'logged out', 1, '2022-02-24 18:28:38'),
+(308, 'logged in', 19, '2022-02-24 18:28:47'),
+(309, 'updated 12 in the semester unit list', 19, '2022-02-24 18:29:06'),
+(310, 'logged out', 19, '2022-02-24 18:29:10'),
+(311, 'logged in', 16, '2022-02-24 18:29:23'),
+(312, 'registered unit for student ', 16, '2022-02-24 18:29:33'),
+(313, 'registered unit for student ', 16, '2022-02-24 18:29:38'),
+(314, 'logged out', 16, '2022-02-24 18:30:01'),
+(315, 'logged in', 23, '2022-02-24 18:30:11'),
+(316, 'logged out', 23, '2022-02-24 18:30:42'),
+(317, 'logged in', 19, '2022-02-24 18:30:59'),
+(318, 'updated 13 in the semester unit list', 19, '2022-02-24 18:31:12'),
+(319, 'logged out', 19, '2022-02-24 18:31:30'),
+(320, 'logged in', 1, '2022-02-24 18:31:41'),
+(321, 'added semister unit configuraion', 1, '2022-02-24 18:35:19'),
+(322, 'logged in', 1, '2022-02-24 19:42:04'),
+(323, 'added kevin ongulu as new student', 1, '2022-02-24 19:47:08'),
+(324, 'added   as new student', 1, '2022-02-24 19:47:08'),
+(325, 'added   as new student', 1, '2022-02-24 19:57:45'),
+(326, 'added kevin ongulu as new student', 1, '2022-02-24 19:58:01'),
+(327, 'added   as new student', 1, '2022-02-24 19:58:02'),
+(328, 'added Student Four as new student', 1, '2022-02-24 20:34:26'),
+(329, 'added   as new student', 1, '2022-02-24 20:34:26'),
+(330, 'logged out', 1, '2022-02-24 22:18:03'),
+(331, 'logged in', 16, '2022-02-24 22:18:13'),
+(332, 'logged in', 23, '2022-02-24 22:22:07'),
+(333, 'logged out', 23, '2022-02-24 22:29:07'),
+(334, 'logged in', 1, '2022-02-24 22:29:16'),
+(335, 'updated 1 in the grades list', 1, '2022-02-24 22:29:51'),
+(336, 'logged out', 1, '2022-02-24 22:29:55'),
+(337, 'logged in', 23, '2022-02-24 22:30:05'),
+(338, 'recorded fee for student 14', 23, '2022-02-24 22:31:32'),
+(339, 'registered unit for student ', 16, '2022-02-24 22:31:38'),
+(340, 'logged out', 23, '2022-02-24 23:16:07'),
+(341, 'logged in', 1, '2022-02-24 23:16:16'),
+(342, 'logged in', 1, '2022-02-28 08:35:56'),
+(343, 'added fee configuraion', 1, '2022-02-28 08:48:33'),
+(344, 'logged out', 1, '2022-02-28 08:48:42'),
+(345, 'logged in', 23, '2022-02-28 08:48:52'),
+(346, 'logged out', 23, '2022-02-28 08:49:49'),
+(347, 'logged in', 1, '2022-02-28 08:49:58'),
+(348, 'added Stephen Omolo as new student', 1, '2022-02-28 08:53:01'),
+(349, 'added   as new student', 1, '2022-02-28 08:53:01'),
+(350, 'logged out', 1, '2022-02-28 08:53:21'),
+(351, 'logged in', 23, '2022-02-28 08:53:30'),
+(352, 'recorded fee for student 19', 23, '2022-02-28 08:54:32'),
+(353, 'logged out', 23, '2022-02-28 08:54:51'),
+(354, 'logged in', 1, '2022-02-28 08:56:55'),
+(355, 'added Object oriented programming in the subject list', 1, '2022-02-28 09:05:27'),
+(356, 'logged out', 1, '2022-02-28 09:05:38'),
+(357, 'logged in', 29, '2022-02-28 09:05:47'),
+(358, 'logged out', 29, '2022-02-28 09:06:00'),
+(359, 'logged in', 30, '2022-02-28 09:06:26'),
+(360, 'registered unit for student ', 30, '2022-02-28 09:06:34'),
+(361, 'logged out', 30, '2022-02-28 09:06:38'),
+(362, 'logged in', 29, '2022-02-28 09:06:47'),
+(363, 'updated 16 in the semester unit list', 29, '2022-02-28 09:06:57'),
+(364, 'logged out', 29, '2022-02-28 09:07:03'),
+(365, 'logged in', 30, '2022-02-28 09:07:07'),
+(366, 'logged out', 30, '2022-02-28 09:07:18'),
+(367, 'logged in', 1, '2022-02-28 09:07:29'),
+(368, 'logged in', 1, '2022-03-11 15:23:45'),
+(369, 'logged out', 1, '2022-03-11 15:26:52'),
+(370, 'logged in', 23, '2022-03-11 15:27:03'),
+(371, 'added fee configuraion', 23, '2022-03-11 16:19:56'),
+(372, 'recorded fee for student 15', 23, '2022-03-11 16:21:56'),
+(373, 'recorded fee for student 18', 23, '2022-03-11 16:22:22'),
+(374, 'recorded fee for student 19', 23, '2022-03-13 12:15:33'),
+(375, 'recorded fee for student 19', 23, '2022-03-13 12:18:53'),
+(376, 'recorded fee for student 19', 23, '2022-03-13 12:20:38'),
+(377, 'logged out', 23, '2022-03-13 12:21:42'),
+(378, 'logged in', 19, '2022-03-13 12:21:53'),
+(379, 'registered unit for student ', 19, '2022-03-13 12:47:25'),
+(380, 'updated 15 in the semester unit list', 19, '2022-03-13 12:50:01'),
+(381, 'updated 15 in the semester unit list', 19, '2022-03-13 12:50:58'),
+(382, 'updated 15 in the semester unit list', 19, '2022-03-13 13:00:33'),
+(383, 'registered unit for student ', 19, '2022-03-13 13:06:21'),
+(384, 'updated 17 in the semester unit list', 19, '2022-03-13 13:24:12'),
+(385, 'updated 15 in the semester unit list', 19, '2022-03-13 13:25:05'),
+(386, 'updated 15 in the semester unit list', 19, '2022-03-13 13:25:20'),
+(387, 'updated 15 in the semester unit list', 19, '2022-03-13 13:30:38'),
+(388, 'updated 17 in the semester unit list', 19, '2022-03-13 13:31:49'),
+(389, 'logged out', 19, '2022-03-13 14:18:25'),
+(390, 'logged in', 22, '2022-03-13 14:19:37'),
+(391, 'logged out', 22, '2022-03-13 14:25:04'),
+(392, 'logged in', 23, '2022-03-13 14:25:14'),
+(393, 'logged out', 23, '2022-03-13 14:25:56'),
+(394, 'logged in', 1, '2022-03-13 14:26:03'),
+(395, 'added fee configuraion', 1, '2022-03-13 14:26:51'),
+(396, 'logged out', 1, '2022-03-13 14:26:55'),
+(397, 'logged in', 22, '2022-03-13 14:27:12'),
+(398, 'logged out', 22, '2022-03-13 14:29:32'),
+(399, 'logged in', 1, '2022-03-13 14:29:39'),
+(400, 'logged out', 1, '2022-03-13 14:38:07'),
+(401, 'logged in', 22, '2022-03-13 14:38:20'),
+(402, 'registered unit for student ', 22, '2022-03-13 15:02:41'),
+(403, 'logged out', 22, '2022-03-13 15:03:46'),
+(404, 'logged in', 16, '2022-03-13 15:03:53'),
+(405, 'logged out', 1, '2022-03-13 16:31:20'),
+(406, 'logged in', 16, '2022-03-13 16:31:31'),
+(407, 'registered unit for student ', 16, '2022-03-13 22:18:50'),
+(408, 'logged in', 19, '2022-03-25 10:42:09'),
+(409, 'updated 17 in the semester unit list', 19, '2022-03-25 14:44:21'),
+(410, 'registered unit for student ', 19, '2022-03-25 14:45:37'),
+(411, 'updated 18 in the semester unit list', 19, '2022-03-25 14:57:19'),
+(412, 'updated 17 in the semester unit list', 19, '2022-03-25 14:59:43'),
+(413, 'updated 19 in the semester unit list', 19, '2022-03-25 15:00:14'),
+(414, 'updated 15 in the semester unit list', 19, '2022-03-25 15:47:19'),
+(415, 'updated 15 in the semester unit list', 19, '2022-03-25 15:50:33'),
+(416, 'updated 15 in the semester unit list', 19, '2022-03-25 17:00:19'),
+(417, 'updated 15 in the semester unit list', 19, '2022-03-25 17:07:22'),
+(418, 'updated 15 in the semester unit list', 19, '2022-03-25 17:08:09'),
+(419, 'updated 18 in the semester unit list', 19, '2022-03-25 17:09:04'),
+(420, 'updated 18 in the semester unit list', 19, '2022-03-25 17:09:18'),
+(421, 'updated 18 in the semester unit list', 19, '2022-03-25 17:09:28'),
+(422, 'updated 18 in the semester unit list', 19, '2022-03-25 17:09:36'),
+(423, 'updated 18 in the semester unit list', 19, '2022-03-25 17:10:14'),
+(424, 'updated 18 in the semester unit list', 19, '2022-03-25 17:26:52'),
+(425, 'updated 18 in the semester unit list', 19, '2022-03-25 17:29:33'),
+(426, 'updated 15 in the semester unit list', 19, '2022-03-25 17:46:55'),
+(427, 'logged out', 19, '2022-03-25 17:48:51'),
+(428, 'logged in', 16, '2022-03-25 17:49:03'),
+(429, 'logged out', 16, '2022-03-25 17:50:55'),
+(430, 'logged in', 1, '2022-03-25 17:51:02');
 
 -- --------------------------------------------------------
 
@@ -491,16 +642,20 @@ CREATE TABLE `payments` (
   `amount` int(10) NOT NULL,
   `study_year` int(10) NOT NULL,
   `payment_date` datetime NOT NULL,
-  `school_year` int(10) NOT NULL
+  `school_year` int(10) NOT NULL,
+  `payment_method` varchar(100) NOT NULL DEFAULT 'Bank'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`id`, `student`, `semester`, `amount`, `study_year`, `payment_date`, `school_year`) VALUES
-(7, 14, 1, 123400, 1, '2022-02-23 08:43:58', 5),
-(8, 14, 4, 12345, 1, '2022-02-23 08:45:01', 5);
+INSERT INTO `payments` (`id`, `student`, `semester`, `amount`, `study_year`, `payment_date`, `school_year`, `payment_method`) VALUES
+(10, 14, 1, 12345, 1, '2022-02-24 20:31:32', 5, 'Bank'),
+(11, 19, 1, 30000, 1, '2022-02-28 06:54:31', 5, 'Bank'),
+(12, 15, 1, 30000, 1, '2022-03-11 14:21:56', 5, 'Bank'),
+(13, 18, 1, 23400, 1, '2022-03-11 14:22:22', 5, 'Mpesa'),
+(16, 19, 1, 30000, 2, '2022-03-13 10:20:38', 5, 'Bank');
 
 -- --------------------------------------------------------
 
@@ -523,7 +678,8 @@ INSERT INTO `program` (`PROGRAM_ID`, `PROGRAM`, `DESCRIPTION`, `no_of_years`) VA
 (2, 'Bachelor of Information Technology', 'This course will teach you details about software ', 1),
 (3, 'Diploma in electrical engineering', 'You will learn about electronics, electricity', 1),
 (4, 'Diploma in Education', 'Learn to be teacher', 1),
-(5, 'Diploma in Beauty', 'Plaiting, hair dressing, manicure, pedicure', 2);
+(5, 'Diploma in Beauty', 'Plaiting, hair dressing, manicure, pedicure', 2),
+(6, 'Bachelor of Computer Science', 'Bachelor of Computer Science', 4);
 
 -- --------------------------------------------------------
 
@@ -559,17 +715,23 @@ CREATE TABLE `registered_units` (
   `date_updated` datetime NOT NULL,
   `school_year` int(10) NOT NULL DEFAULT 1,
   `semester` int(10) NOT NULL DEFAULT 1,
-  `study_year` int(10) NOT NULL DEFAULT 1
+  `study_year` int(10) NOT NULL DEFAULT 1,
+  `cat_marks` int(3) DEFAULT NULL,
+  `main_exam_marks` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `registered_units`
 --
 
-INSERT INTO `registered_units` (`id`, `student`, `unit`, `date_registered`, `marks`, `date_updated`, `school_year`, `semester`, `study_year`) VALUES
-(9, 14, 8, '2022-02-23 10:51:36', NULL, '0000-00-00 00:00:00', 5, 4, 1),
-(10, 14, 4, '2022-02-23 10:51:56', NULL, '0000-00-00 00:00:00', 5, 4, 1),
-(11, 14, 9, '2022-02-23 10:52:02', NULL, '0000-00-00 00:00:00', 5, 4, 1);
+INSERT INTO `registered_units` (`id`, `student`, `unit`, `date_registered`, `marks`, `date_updated`, `school_year`, `semester`, `study_year`, `cat_marks`, `main_exam_marks`) VALUES
+(15, 14, 4, '2022-02-24 22:31:38', 40, '2022-03-25 15:46:55', 4, 1, 1, 13, 27),
+(16, 19, 10, '2022-02-28 09:06:34', NULL, '2022-02-28 07:06:57', 5, 1, 1, NULL, NULL),
+(17, 14, 5, '2022-03-13 12:47:25', NULL, '2022-03-25 12:59:43', 5, 1, 1, NULL, NULL),
+(18, 14, 8, '2022-03-13 13:06:21', NULL, '2022-03-25 15:29:33', 5, 1, 1, NULL, NULL),
+(19, 15, 5, '2022-03-13 15:02:41', NULL, '2022-03-25 13:00:14', 5, 1, 1, NULL, NULL),
+(20, 14, 9, '2022-03-13 22:18:50', NULL, '0000-00-00 00:00:00', 5, 2, 1, NULL, NULL),
+(21, 18, 5, '2022-03-25 14:45:36', NULL, '0000-00-00 00:00:00', 5, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -606,6 +768,13 @@ CREATE TABLE `semester_units` (
   `unit` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `semester_units`
+--
+
+INSERT INTO `semester_units` (`id`, `semester`, `unit`) VALUES
+(9, 2, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -632,7 +801,9 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`STUDENT_ID`, `REGISTRATION_NUMBER`, `PROGRAM`, `PG_NAME`, `PG_ADDRESS`, `PG_PHONE`, `HS_NAME`, `HS_GRADE`, `HS_YEAR_COMPLETED`, `USER`, `study_year`) VALUES
 (14, '1234569', 2, 'Elec SHi', 'P.O Box 12678 – 00100 Nairobi', '', 'REC', 'B-', 2013, 16, 1),
-(15, '12345', 4, 'parent for student one', 'po box 23', '0712345', 'Shamakhokho', 'A', 0000, 22, 1);
+(15, '12345', 4, 'parent for student one', 'po box 23', '0712345', 'Shamakhokho', 'A', 0000, 22, 1),
+(18, 'CS/00/345', 2, 'Elec SHi', 'Nairobi', '0741311071', 'REC', 'A', 0000, 28, 1),
+(19, 'CS/903/2022', 6, 'Jackton Ojwang', 'jacktonojwang@gmail.com', '25471389070', 'Maranda High', 'A-', 0000, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -690,18 +861,19 @@ CREATE TABLE `student_int_info` (
 
 CREATE TABLE `student_study_year` (
   `id` int(10) NOT NULL,
-  `study_year` int(1) NOT NULL
+  `study_year` int(1) NOT NULL,
+  `is_active` varchar(3) NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student_study_year`
 --
 
-INSERT INTO `student_study_year` (`id`, `study_year`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4);
+INSERT INTO `student_study_year` (`id`, `study_year`, `is_active`) VALUES
+(1, 1, 'Yes'),
+(2, 2, 'No'),
+(3, 3, 'No'),
+(4, 4, 'No');
 
 -- --------------------------------------------------------
 
@@ -748,20 +920,23 @@ CREATE TABLE `subjects` (
   `FOR` int(10) DEFAULT NULL,
   `DESCRIPTION` text NOT NULL,
   `LECTURER` int(10) NOT NULL,
-  `study_year` int(10) NOT NULL DEFAULT 1
+  `study_year` int(10) NOT NULL DEFAULT 1,
+  `grade` int(10) NOT NULL DEFAULT 1,
+  `semester` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`SUBJECT_ID`, `SUBJECT`, `FOR`, `DESCRIPTION`, `LECTURER`, `study_year`) VALUES
-(4, 'Introduction to databases', 2, 'Introduction to databases        ', 21, 1),
-(5, 'Introduction to Kiswahili', 4, 'Kiswahili fundamentals      ', 19, 1),
-(6, 'Digital circuits', 3, 'Fundamentals of Digital circuits        ', 21, 2),
-(7, 'Introduction to pedicure', 5, 'Introduction to pedicure  ', 21, 3),
-(8, 'Software engineering', 2, 'System coding             ', 19, 1),
-(9, 'Networks', 2, 'Fundamentals of networking    ', 21, 1);
+INSERT INTO `subjects` (`SUBJECT_ID`, `SUBJECT`, `FOR`, `DESCRIPTION`, `LECTURER`, `study_year`, `grade`, `semester`) VALUES
+(4, 'Introduction to databases', 2, 'Introduction to databases        ', 19, 0, 1, NULL),
+(5, 'Introduction to Kiswahili', 4, 'Kiswahili fundamentals      ', 19, 1, 1, NULL),
+(6, 'Digital circuits', 3, 'Fundamentals of Digital circuits        ', 21, 2, 1, NULL),
+(7, 'Introduction to pedicure', 5, 'Introduction to pedicure  ', 21, 3, 1, NULL),
+(8, 'Software engineering', 2, 'System coding             ', 19, 1, 1, NULL),
+(9, 'Networks', 2, 'Fundamentals of networking    ', 21, 1, 1, NULL),
+(10, 'Object oriented programming', 6, '', 29, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -820,12 +995,14 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`USER_ID`, `LASTNAME`, `FIRSTNAME`, `MIDDLE_NAME`, `USERNAME`, `USER_TYPE`, `ADDRESS`, `GENDER`, `DOB`, `EMAIL`, `PASSWORD`) VALUES
 (1, 'admin', 'admin', '', 'admin', 'ADMINISTRATOR', '', '', '2022-02-10', 'admin@gmail.com', '0192023a7bbd73250516f069df18b500'),
 (2, 'staff', 'staff', '', 'staff', 'STAFF', '', '', '2022-02-10', 'staff@gmail.com', '0192023a7bbd73250516f069df18b500'),
-(16, 'ongulu', 'kevin', 'indeche', 'kevin', 'STUDENT', 'kevinkorobosta@gmail.com', 'MALE', '2022-02-10', '', '827ccb0eea8a706c4c34a16891f84e7b'),
-(17, 'kevin', 'korobosta', 'mname', 'koro', 'STAFF', '', '', '2022-02-18', 'kevinkorobosta@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
+(16, 'ongulu', 'kevin', 'indeche', 'kevin', 'STUDENT', 'kevinkorobosta@gmail.com', 'MALE', '2022-02-10', 'kevinkorobosta@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
 (19, 'lecturer', 'one ', 'mname', 'lecturerone', 'LECTURER', '', '', '2022-02-18', 'lecturerone@weks.com', '827ccb0eea8a706c4c34a16891f84e7b'),
 (21, 'Lecturer', 'lec', 'mname', 'lecturertwo', 'LECTURER', '', '', '2022-02-18', 'lecturertwo@weks.com', '827ccb0eea8a706c4c34a16891f84e7b'),
 (22, 'one', 'student', 'stud', 'studentone@gmail.com', 'STUDENT', 'p.O BOX 1', 'MALE', '2022-02-21', 'studentone@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(23, 'one', 'Finace', 'mname', 'financeone', 'FINANCE', '', '', '2022-02-22', 'financeone@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b');
+(23, 'one', 'Finace', 'mname', 'financeone', 'FINANCE', '', '', '2022-02-22', 'financeone@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
+(28, 'Four', 'Student', '', 'studentfour@gmail.com', 'STUDENT', 'PO BOX 43', 'MALE', '2007-01-01', 'studentfour@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
+(29, 'Antonny', 'Wekesa', 'mname', 'anto', 'LECTURER', '', '', '2022-02-28', 'antonywekesa@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
+(30, 'Omolo', 'Stephen', 'Otieno', 'stephenotieno@gmail.com', 'STUDENT', 'P.o box 43844-00100', 'MALE', '2007-01-01', 'stephenotieno@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b');
 
 --
 -- Indexes for dumped tables
@@ -971,7 +1148,9 @@ ALTER TABLE `student_year_info`
 ALTER TABLE `subjects`
   ADD PRIMARY KEY (`SUBJECT_ID`),
   ADD KEY `lecturer` (`LECTURER`),
-  ADD KEY `subjects_ibfk_2` (`FOR`);
+  ADD KEY `subjects_ibfk_2` (`FOR`),
+  ADD KEY `grade` (`grade`),
+  ADD KEY `semester` (`semester`);
 
 --
 -- Indexes for table `total_grades_subjects`
@@ -1019,7 +1198,7 @@ ALTER TABLE `data_base`
 -- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `grade`
@@ -1037,19 +1216,19 @@ ALTER TABLE `grades_per_subject`
 -- AUTO_INCREMENT for table `history_log`
 --
 ALTER TABLE `history_log`
-  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
+  MODIFY `log_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=431;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `PROGRAM_ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `PROGRAM_ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `promotion_candidates`
@@ -1061,7 +1240,7 @@ ALTER TABLE `promotion_candidates`
 -- AUTO_INCREMENT for table `registered_units`
 --
 ALTER TABLE `registered_units`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `school_year`
@@ -1073,13 +1252,13 @@ ALTER TABLE `school_year`
 -- AUTO_INCREMENT for table `semester_units`
 --
 ALTER TABLE `semester_units`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `STUDENT_ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `STUDENT_ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `student_info`
@@ -1109,7 +1288,7 @@ ALTER TABLE `student_year_info`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `SUBJECT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `SUBJECT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `total_grades_subjects`
@@ -1121,7 +1300,7 @@ ALTER TABLE `total_grades_subjects`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `USER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables
@@ -1172,7 +1351,8 @@ ALTER TABLE `students`
 --
 ALTER TABLE `subjects`
   ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`LECTURER`) REFERENCES `user` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `subjects_ibfk_2` FOREIGN KEY (`FOR`) REFERENCES `program` (`PROGRAM_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `subjects_ibfk_2` FOREIGN KEY (`FOR`) REFERENCES `program` (`PROGRAM_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subjects_ibfk_3` FOREIGN KEY (`grade`) REFERENCES `grade` (`grade_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

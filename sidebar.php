@@ -25,6 +25,9 @@ $school_year=$s['school_year'];
     <li class="">
         <a href="rms.php?page=program"><i class="fa fa-fw fa-bars"></i> Course</a>
     </li>
+    <li>
+        <a href="rms.php?page=verify_transcript"><i class="fa fa-fw fa-files-o"></i> Verify Transcript</a>
+    </li>
 </ul>
 </li>
 <!-- <li>
@@ -53,9 +56,13 @@ $school_year=$s['school_year'];
         <li>
             <a href="rms.php?page=units_report"><i class="fa fa-fw fa-files-o"></i> Units</a>
         </li>
-        <li>
+        
+        <!-- <li>
             <a href="rms.php?page=student_performance_report_admin"><i class="fa fa-fw fa-files-o"></i> Student Performance</a>
-        </li>
+        </li> -->
+        <!-- <li>
+            <a href="rms.php?page=unit_performance"><i class="fa fa-fw fa-files-o"></i> Unit Performance</a>
+        </li> -->
         <li>
             <a href="rms.php?page=finance_fee_payment_report"><i class="fa fa-fw fa-files-o"></i> Fee Payment</a>
         </li>

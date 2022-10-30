@@ -1,4 +1,19 @@
 <?php session_start(); 
+$sub_query=" WHERE PROGRAM.PROGRAM != '' ";
+
+if(isset($_POST['no_of_years'])){
+  $no_of_years=$_POST['no_of_years'];
+  if($no_of_years != ''){
+    $sub_query=$sub_query.' AND PROGRAM.no_of_years='.$no_of_years;
+  }
+}
+
+if(isset($_POST['category'])){
+  $category=$_POST['category'];
+  if($category != ''){
+    $sub_query=$sub_query." AND PROGRAM.PROGRAM LIKE '".$category."%'";
+  }
+}
 
 
 ?>
@@ -23,6 +38,52 @@
     <i class="glyphicon glyphicon-print"></i>PRINT</button>
 </h1>
 
+<div class="col-md-6" id="">
+  <div style="background-color:rgba(208, 212, 209, 0.23);padding-left:30px">
+    <div class="row main">
+      <div class="main-login main-center">
+        <h3 id="head">Filter</h3>
+        <form class="" method="post">
+          <div class="form-group">
+            <label for="category" class="cols-sm-2 control-label">Category</label>
+            <div class="cols-sm-4">
+              <div class="input-group">
+                <select name="category" class="form-control">
+                  <option value="">Select Category</option>
+                  <option>PHD</option>
+                  <option>Master</option>
+                  <option>Bachelor</option>
+                  <option>Diploma</option>
+                  <option>Certificate</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="no_of_years" class="cols-sm-2 control-label">Number of Years</label>
+            <div class="cols-sm-4">
+              <div class="input-group">
+                <select name="no_of_years" class="form-control">
+                  <option value="">Select Number of Years</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group ">
+            <button type="submit" name="verify" class="btn btn-info" id="btn_add">Filter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
             
           <div class="container">
          
@@ -34,6 +95,7 @@
 
 		<br> <br>
        <div class="col-md-8" id="stud" style="padding:50px">   
+        <img style="margin-left: 40%;" src="asset/images/logo.png"><br><br>
        <div style="margin-left:.5in;margin-right:.5in;margin-top:.1in;margin-bottom:.1in;line-height:1mm;">
 
        <table>
@@ -41,7 +103,7 @@
 		<td style="width:20%;">
 		
 		</td>
-		<td style="width:800px;font-size:12px;line-height:1mm;text-align:center" >
+		<td style="width:400px;font-size:12px;line-height:1mm;text-align:center" >
 		<p><b>WEKS COLLEGE</b></p>
 		<p style="padding:5px; font-weight: bold; color:green" >Courses Report</p>
 		</td>
@@ -61,7 +123,7 @@
     <?php
     include 'db.php';
     
-    $sql=  mysqli_query($conn, "SELECT * FROM program");
+    $sql=  mysqli_query($conn, "SELECT * FROM program $sub_query");
     if(!$sql){
       echo $conn->error;
     }

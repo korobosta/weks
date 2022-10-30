@@ -118,7 +118,7 @@ function printContent(el){
     include('db.php');
     session_start();
     $id=$_GET['id'];
-    $results = $conn->query("SELECT payments.amount,payments.payment_date,payments.payment_method,program.PROGRAM,program.no_of_years,grade.grade,school_year.school_year,user.EMAIL,user.FIRSTNAME,user.MIDDLE_NAME,user.LASTNAME,user.EMAIL,student_study_year.study_year,students.REGISTRATION_NUMBER FROM payments left join grade on payments.semester=grade.grade_id JOIN school_year ON payments.school_year=school_year.SY_ID JOIN  students ON payments.student=students.STUDENT_ID join user on students.USER=user.USER_ID JOIN program ON students.PROGRAM=program.PROGRAM_ID JOIN student_study_year ON payments.study_year=student_study_year.id where payments.id='$id'"); 
+    $results = $conn->query("SELECT payments.date_of_payment,payments.paid_by,payments.id,payments.amount,payments.payment_date,payments.payment_method,program.PROGRAM,program.no_of_years,grade.grade,school_year.school_year,user.EMAIL,user.FIRSTNAME,user.MIDDLE_NAME,user.LASTNAME,user.EMAIL,student_study_year.study_year,students.REGISTRATION_NUMBER FROM payments left join grade on payments.semester=grade.grade_id JOIN school_year ON payments.school_year=school_year.SY_ID JOIN  students ON payments.student=students.STUDENT_ID join user on students.USER=user.USER_ID JOIN program ON students.PROGRAM=program.PROGRAM_ID JOIN student_study_year ON payments.study_year=student_study_year.id where payments.id='$id'"); 
     if(!$results){
         echo $conn->error;
     }
@@ -131,12 +131,12 @@ function printContent(el){
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="../assets/images/logo.png" style="width:100%; max-width:300px;">
+                                <img style="height: 50px;" src="asset/images/logo.png" style="width:100%; max-width:300px;">
                             </td>
                             
                             <td>
-                                Invoice No: <?php echo $invoiceNumber; ?><br>
-                                <?php echo $row['payment_date'];?><br>
+                                Receipt No: <strong><?php echo $row['id']; ?></strong><br>
+                                Created at: <strong><?php echo $row['payment_date'];?></strong><br>
                             </td>
                         </tr>
                     </table>
@@ -181,6 +181,26 @@ function printContent(el){
                 
                 <td>
                     <?php echo $invoiceNumber;?>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Paid By
+                </td>
+                
+                <td>
+                    Payment Date
+                </td>
+            </tr>
+            
+            <tr class="details">
+                <td>
+                    <?php echo $row['paid_by']; ?>
+                </td>
+                
+                <td>
+                    <?php echo $row['date_of_payment'];?>
                 </td>
             </tr>
             
@@ -230,7 +250,8 @@ function printContent(el){
                 </td>
             </tr>
             <tr>
-                <td>Produced By <?php echo $_SESSION['fname'] ?></td>
+                <td>Produced By <strong><?php echo $_SESSION['fname'] ?></strong></td>
+                <td>Generated on <strong><?php echo date('Y-m-d H:i A') ?></strong> </td>
             </tr>
         </table>
     </div>

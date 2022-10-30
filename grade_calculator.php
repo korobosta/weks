@@ -1,7 +1,7 @@
 <?php
 function calculate_grade($marks){
 	$grade="";
-	if ($marks>70){
+	if ($marks>=70){
 		$grade='A';
 	}
 	else if ($marks>=60 & $marks<70){

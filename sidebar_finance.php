@@ -13,10 +13,13 @@ $school_year=$s['school_year'];
 <a id=demo1 href="javascript:void(0)" data-toggle="collapse" data-target="#masterlistCollapse"><i class="fa fa-fw fa-files-o"></i> Main <i class="fa fa-fw fa-caret-down"></i></a>
 <ul id="masterlistCollapse" class="collapse">
     <li>
-            <a href="rms.php?page=configure_fee"><i class="fa fa-fw fa-file-text-o"></i> Configure Fee </a>
-        </li>
+        <a href="rms.php?page=configure_fee"><i class="fa fa-fw fa-money"></i> Configure Fee </a>
+    </li>
     <li>
-        <a href="rms.php?page=record_payment"><i class="fa fa-fw fa-users"></i> Record Fee Payment</a>
+        <a href="rms.php?page=record_payment"><i class="fa fa-fw fa-plus"></i> Record Fee Payment</a>
+    </li>
+    <li>
+        <a href="rms.php?page=fee_balances"><i class="fa fa-fw fa-money"></i>Fee Balances</a>
     </li>
 </ul>
 </li>
